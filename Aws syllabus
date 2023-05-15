@@ -1,0 +1,178 @@
+Syllabus
+----------
+#1    - 10/15 days
+Introduction to Cloud Computing
+IAAS
+PAAS
+SAAS
+Introduction AWS Cloud Architecture
+- Region
+- Availability Zones
+- Edge Location
+- Scope of Services
+How to create an AWS Free-tier account
+--------------------------------------------------------------------------------------------
+#2 [Warmup] 10 days
+Linux operating system fundamentals (brushup/quick revision)
+- File Management 
+- Process Management
+- User Management
+- Package Management
+- SSH Protocol 
+
+Distributed Webapplication, why do we need them?
+How to deploy a java web application in general?
+--------------------------------------------------------------------------------------------
+#3
+AWS Networking (10/15 days)
+Virtual Private Cloud (VPC)
+Subnet
+	- private subnet
+	- public subnet
+	- hybrid subnet
+Availability Zones
+Internet Gateway
+Nat Gateway
+VPN Gateway
+Security Groups
+NACL Rules
+VPC Peering
+--------------------------------------------------------------------------------------------
+#4. Compute Domain (10/15 days)
+1. EC2 Instance
+2. ASG
+3. Elastic Beanstalk
+4. Elastic Loadbalancer (Application Load balancer, Network Load Balancer, Gateway load balancer)
+5. Lambda
+6. Keypairs
+7. Amazon Machine Image (AMI)
+-------------------------------------------------------------------------------------------
+#5	
+Storage (10 days)
+-------
+Object Storage vs Block Storage
+S3 Storage (ACL and Bucket Policies)
+Amazon Glacier
+Elatic Block Storage
+	- Types of EBS Volumes
+	- Mounting an EBS Volumes on EC2 
+	- EBS Snapshots
+Elastic Filesystem
+Storage Gatway
+Snowball
+
+#6 
+Database Domain (10/15 days)
+Relational Data Service (MySql Database)
+Auroradb
+Dynamodb (partitions)
+Redshift
+Elastic Cache Reddis Cache
+	
+#7
+Identity and Access Management (IAM)
+AWS Cloud Accounts
+User, Group
+Grant Policies
+Roles
+Manage Access Keys
+MFA Devices
+
+-------------------
+Course Syllabus:-
+#1 
+Introduction to cloud computing
+IAAS
+PAAS
+SAAS
+Introduction AWS Cloud Architecture
+	- Region
+	- Availablity Zone
+	- Edge Locations
+	- Scope of Services
+How to create a free-tier account
+
+#2. Basics
+Linux shell commands (basics)
+Java programs how to run (basics)
+Distributed Web Applications	
+
+#3
+AWS Networking
+Virtual Private Cloud Network (VPC Network)
+Subnet
+	- Private Subnet
+	- Public Subnet
+	- Hybrid Subnet
+Internet Gateway
+Nat Gateway
+VPN Gateway
+Security Groups
+NACL Rules 
+VPC Peering
+Route53
+
+#4. Compute 
+EC2 Instance
+ASG
+Elastic Loadbalancer
+	- Application Loadbalancer
+	- Network Loadbalancer
+	- Gateway Loadbalancer
+Elastic BeanStalk
+AWS Lambda
+Key/pair
+Amazon Machine Image (AMI)
+	
+#5 Storage
+S3 Bucket
+	- ACL
+	- Bucket Policies
+Elatic Block Storage
+Storage Gateway
+Amazon Glacier
+Snowball
+Cloud Front
+Elastic FileSystem
+
+#6. Database
+Relational Data Service (RDS)
+Auroradb
+Dynamo DB
+Elastic Cloud Cache
+
+#7 Identity and Access Management (IAM)
+AWS Account
+Uses
+Groups
+Policies
+	- Account Policies
+	- Group 
+	- User
+	- Bucket policies
+Roles
+Manage Access Keys
+MFA Device
+
+#8 Developer Tools
+CodeCommit
+CodePipeline
+CodeBuild
+CodeDeploy
+
+#9. Service
+SQS (Simple Queuing Service)
+SNS (Simple Notification Service)
+SES (Simple Email Service)
+	
+	
+#10
+Management Tool
+CloudWatch
+CloudTrail
+AWS Trusted Advisor
+KMS (Key Management Service)
+	
+
+EKS
+ECR

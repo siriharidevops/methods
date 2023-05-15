@@ -1,0 +1,1363 @@
+01-AUG
+How to install and configure apache2 server to host an static web application?
+1. Install apache2 server
+sudo apt update -y
+sudo apt install -y apache2
+
+2. scp crazyeats.zip into the ec2 instance
+scp -i ~/.ssh/awskp.pem crazyeats.zip ubuntu@ip:/home/ubuntu
+
+3. copy the crazyeats.zip into hosting directory
+cp crazyeats.zip /var/www
+
+4. extract the zip
+unzip crazyeats.zip
+/var/www/
+		|-crazyeats
+		
+5. write the site configuration file in routing the domain request to the DocumentRoot directory
+sudo touch /etc/apache2/sites-available/crazyeats.conf
+sudo vim /etc/apache2/sites-available/crazyeats.conf
+
+<VirtualHost *:80>
+	ServerName www.crazyeats.com
+	DocumentRoot /var/www/crazyeats
+</VirtualHost>
+
+6. sudo a2ensite crazyeats
+	 sudo systemctl reload apache2
+	 
+Windows Host
+Add a local dns entry with the domain routing the request to apache2 server on the ec2 instance
+open c:\Windows\System32/drivers/etc/hosts
+ipec2  www.crazyeats.com
+_____________________________________________________________________________________
+01-AUG
+
+If the incomming network traffic is coming within private port range means, it is not an inbound request, it is an response for the request we send.
+	
+_____________________________________________________________________________________
+02-AUG
+vpc peering
+------------
+virtual private cloud network (vpc)
+vpc is an private network in which the resources of an vpc are isolated from any other resources of aws cloud platform.
+	
+For any resource on aws cloud platform there are 2 types of ip address assigned.
+	1. private ip address = is an internal ip address generated or assigned to any resources created on the aws cloud platform which is local to the aws network.
+	using the private ip address we can access the resources from other resources of the same vpc within the aws cloud platform.
+	There are 2 reasons for why aws cloud platform assigns for every resource a private ip address
+		1.1 For each resource to identify uniquely over the network and make them accessible internally within the cloud network aws assigns an private ip address
+		1.2 by using the private ip address the low network lantency and bandwidth speed at which the data transfers takes place will be really high, so it is always recommended to use private ip ony while communicating between the resource of the same vpc.
+		Note: private ip address are local to the aws cloud platform and cannot be used for accessing the resources from external network
+	
+	2. public ip address = public ip address are assigned to the resources of public subnet. even though we assign public ip address to a private subnet resource, there is of no use, since the network itself is not connected to a public network using the public ip address the resource cant be reached.
+		 The aws cloud platform supports 2 types of public ip addresses
+		 1. empheral public ip address = is an public ip address assigned to the resource during provisioning of the resources by aws cloud platform. The empheral ip address assigned is an temporary ipaddress, that would be changed for that resource during a restart.			 
+
+		 The empheral ip address is not assigned to the resource by default.
+		 There are 2 ways we can assign empheral ip address to the resources.
+			 1. while creating the subnet we need to choose auto assign public ip address to the resources of the subnet, then for each resource that is created within the subnet, aws cloud platform assigns an empheral ip address
+			 by default when we are creating the subnet, the auto assign public ip is disabled.
+			 2. while creating the resource for eg.. an ec2 instance, we need to choose the optional manually in assigning an ip address.
+				
+			 Post provisioning of the resource also we can assign ip address to an resource. we need to goto network interfaces section of the resource and attach a new nic and choose assign public ip address.
+				 
+			 
+		 2. elastic public ip address 
+		 if we want the resources to be assigned with an permanent ip address then we need to use elastic ip address. aws allows us to create an elastic ip address pool in which we reserve the public ip addresses upto a limit of #5. there after we can attach/assign these ip address to the resources of our account.
+		 even the resource has been deleted the ip address will be returned to the pool, the ip address will not be deleted.
+		 elastic ip addresses are chargeable and if not being used we should release and remove them
+_____________________________________________________________________________________
+03-AUG
+vpc peering
+------------
+virtual private cloud network is an isolated network of resources from other resources of the cloud platform.
+	
+_____________________________________________________________________________________
+04-AUG
+vpc peering
+by default the resources within a vpc can communicate with other resources across the subnet of the vpc. If we wanted to make the resource of a vpc accessible externally we need to make the subnet as public subnet.
+	
+But what if we wanted the resources of our vpc to be accessible by the other resources of another vpc within the aws cloud?
+There are many ways to make the resources accessible across the vpcs of the cloud platform
+#1. make the subnet as public subnet, so that all the resources of that subnet in the vpc becomes accessible to other vpcs of the cloud platform. but there are dis-advantages with this approach
+	1.1 the resources will not only become accessible across the vpcs of the cloud platform, those are exposed to the external world as well, which poses an unecessary security threat
+	1.2 all the communicate to these public subnet resources goes through the external network channel due to which a huge network latency and delay in bandwidth transmission exists when compared with internal network of aws. so there is huge impact on the performance of the applications communicate over the external route.
+#2. use vpc peering
+	vpc peering is a technic of inter-connecting or routing the network traffic across the vpcs of the aws cloud platform. by peering vpcs there is no additional data/network line will not be established, all the data between these 2 vpcs moves internally within the aws network thus providing high level security
+	
+	The vpc peering can be done across any 2 different vpcs of
+	1. across the regions
+	2. across the aws accounts	
+But there are few conditions to be taken into account in order to perform vpc peering
+1. The ip ranges of both the vpcs we wanted to peer should not overlap
+2. Transitive peering, edge routing, internet gateway access is not supported
+3. No Nat Routing between the vpcs
+4. cannot resolve private DNS values across the vpcs
+5. No cross referencing of security groups between the vpcs
+_____________________________________________________________________________________
+05-AUG									 
+#2. Database domain
+There are 5 services under database domain
+
+1. RDS (Relational database service)
+RDS is not a database software product of AWS Cloud platform. There are lot of relational database management system softwares are available in the market like oracle, mysql server, postgres and db2 etc to use any of these database softwares on aws cloud platform, the cloud engineer has to take care of provisioning, scaling, backup and restoration of these products on cloud. instead aws has provided few of the popular database products as managed database services on aws cloud platform as PAAS services through RDS Service
+
+For eg.. if wanted an oracle database to be used on aws cloud platform, we need to choose the database product and database configuration or parameters with which we wanted to have the database instance to RDS Service of aws cloud platform. It takes care of provisioning, managing the database cloud instance on the cloud platform.
+	
+2. Aurora db
+Aurora database build by aws cloud platform on top of mysql server database. it is an relational database management system provided by amazon cloud. The Amazon cloud claims the aurora db is 5 times fater than the mysql server database interms of performance and data transfer rates
+
+3. Dynamo db
+It is an no-sql database management system built by amazon and provided as part of aws cloud platform. we can store petabytes of data in dynamo db and it is highly scalable
+
+4. Elastic Cache
+It is an distributed cache system provided by amazon cloud provider to implement server-side application caching
+
+5. Redshift = database warehouse service used for processing and analyzing the data and generate reports
+------------------------------------------------------------------------------------------------------------------------
+What is a database management system, why do we need a database system?
+A business always generates the data, the data that is generated by a business has to be kept/stored permanently for future usage for various different purpose.
+
+How does the business can store the data permanently so that it can be used in future?
+Write the data/store it on a booking keeping of records like ledger, sales book or petty cashbook etc. So that we can go through the records of data being written on the book for performing any operations.
+There are several problems in keeping/storing the data on the physical medium like paper.
+1. The information stored or written on a paper may not be legitimate and cannot be read/understood by other people
+2. The paper has wear and tear and the data written on the paper might get fadded over the time and it is not permanent
+3. accessing the data and searching the data is very difficult when we store the data on a book
+4. in case if we have lost the book, there is no way to restore or recover it back
+5. the information written on a book can be read by anyone who has access to it, so information is not secured
+
+From the above we can understand storing the data on physical mediums like paper/books has lot of problems, since the business data has to be stored permanently for long interval of time we can store it on a computer system 
+
+The computer systems allows us to permanently store the data on the storage devices like harddisk, pendrive, floppy and cd devices. These are called secondary storage devices or permanent storage devices of a computer system that allows us to store the data permanently
+
+To organize and manage in storing the data on these devices FileSystem technics are introduced. We can store the data in a File and organize or group them using Folders for quick/faster access.
+	
+File = is an datastructure that holds the memory address location of the actual data where it has been stored on the harddisk of the computer. by locating the address location of the data through the file we can access the information we stored on a harddisk. Each file will be given an unique name through which we can access the file and the contents of data through it.
+Folder = Folder is a group of related files kept together to quickly access them 
+
+Now we can store the data on a computer system permanently using files/folders
+_____________________________________________________________________________________
+08-AUG
+database domain
+database domain contains all the services related to managing the data, there are 5 services are there within it
+1. RDS Service (Relational Database Service)
+2. Dynamo DB
+3. Aurora DB
+4. Elastic Cache
+5. Redshift
+
+Why do we need to store the data permanently, what is the purpose of it?
+always the business is going to produce data, and the business data has to be stored permanently for future usage and performing computation of the data.
+To store the data permanently we can maintain the business data by writing on a piece of paper or by keeping the information in ledger books, petty cashbooks etc
+
+There are dis-advantages in storing the data on the physical medium like paper or books
+1. information written on a paper may not be legitimate and everyone may not be able to read and understand what has been written
+2. business data grows over the time and at any point of time if wanted to retrieve the data in past, searching or identifying the data over the books is very difficult and time consuming operation and at somepoint of time we may not be able to locate the data as well
+3. physical medium of storing the data has wear and tear and might be lost in future (it is not permanent)
+4. not secured any one who has access to the books can read the information
+5. there is no way to backup and restore in case of lost
+
+from the above we can understand permanently storing the data on a physical medium (book/paper) has lot of problems, to overcome them permanent storage of data on the computer system has been introduced.
+
+How to store the data permanently on a computer system?
+The computer systems are attached with permanent storage devices like floppy, cd, pendrives and harddisk devices into which we can store the data permanently.
+The process of permanently writing the data into these devices is called "persistency".
+
+How to permanently store the data into the secondary storage devices of the computer?
+To store and organize the data on the secondary storage devices of the computer, the FileSystem technics are introduced.
+By using the FileSystem technics we can store the data interms of Files/folders on the computer system.
+	
+File: File is a datastructure that holds the address of the data where it resides on the physical storage device of the computer. Each file is associated with a name, through which we can easy locate and access the data stored on the secondary storage device of the computer
+
+Folder: group of related files are kept together, so that those can be located and accessed quickly.
+------------------------------------------------------------------------------------------------------------------------
+How to store the data on the File of a computer?
+We can store the data on a file as a set of sequence of characters (text data) inside them. we can use any of the text editors available in storing and reading the data from the files.
+	
+even though we can store characters of data manually in a file using the text editors, there are lot of problems are there in storing the data.
+	1. manually storing the data on a file is error prone. there is no way the data entered by the user is valid or invalid and all of the data gets persisted on to a file, which eventually leads to incorrent and un-usable data.
+	2. modifying the existing data on a file is very difficult and it is time consuming job, because we need to identify the data stored in past on the file place the pointer at the right location and modify it
+	3. searching and find the data within the text file is very difficult
+	4. we stored the data on a file to perform different types of calculations, but to use the data and perform calculations we need to manually read the data which is a time consuming job
+	5. manually reading and performing the computation on the data stored on a file may not result in accuraccy and takes lot of time as well.
+_____________________________________________________________________________________
+09-AUG
+
+_____________________________________________________________________________________
+10-AUG
+
+_____________________________________________________________________________________
+11-AUG	
+How to store the data on a File?
+We can store the data on a File as a sequence of set of characters by using a text editor like a linux: vim, nano	windows: notepad, wordpad etc
+If we are storing the data manually on a File there are plenty of problems we run into
+1. manually writing the data into the File is error prone job, there is no guarantee all the data written on to file is valid which will eventually leads to incorrect data and will not be helpful for performing operations
+2. out of the data that is stored on the file, modifying the data is a tedious job because we need to locate the data that we wanted to modify manually and place the cursor position at the right place to replace or modify the existing data
+3. searching and finding the data is verify difficult, querying the data with multiple filters is a very difficult job
+4. we need to read the data manually to perform calculations on the data, which is a time consuming job and we cannot guarantee the accuracy in performing the operation
+5. there is no security, any one can read the data stored on a File
+
+To overcome the above problem, let us not store the data on a File manually rather use software applications to store and manage the data on the underlying Files of the system.
+	
+Instead of we directly writing the data into the File, we use software applications which will takes the data from the user and validates it and writes/manages the data into the File of the computer. There are lot of advantages are there
+1. Any data that is written on to the File through the Software Program is guaranteed to be accurate/valid and can be used for performing operations
+2. all the File manipulations like update, delete, inserting the data is taken care by the software program itself,  the user dont need to manually locate and modify or delete the data
+3. software programs are built by keeping the support of searching the data based on complex filter conditions, so we can quickly access the data we want through programs
+4. The program by itself can read the records of data and perform operations on the data very quickly and high accuracy in performing the operation is guaranteed
+5. software programs can use data security technics like encryption to store the data on a File, so that no one can read or understand the data from the file. So information stored on the file is highly secured
+
+From the above we can understand if we are performing the operations and persisting the data through an software application we can eliminate all the problems in managing the data. But the software application to perform there activities should be developed by a developer. 
+There are lot of challenges involved in developing the software program/application which will carry these operations let us identify them
+1. It looks like majority of code we are going to writing in the software applications contributes to persisting the data on the Filesystem, where in the developer would endup in spending little amount of time on writing the business logic due to which the time required for building the application will goes up
+2. most of the programming languages doesnt have good support in storing the data onto the Files of the computer, so programmer has to write complex logic in managing the data on a File
+3. due to the complexity of the code understanding and maintaining it is very difficult. 
+4. due to huge amount of code to be written in storing the data, there is more chances of bugs in the application
+5. since it takes lot of time to build application for managing persistence operation, the cost of building the application goes high
+6. By storing the data onto a File of a computer, it is not scalable and distributable across the computers
+_____________________________________________________________________________________
+12-AUG	
+	
+How to store the data permanently on the computer?
+We can store the data permanently on a computer by writing onto the secondary storage devices by using FileSystem technic. FileSystem technic allows us to store and manage the data interms of Files/Folders.
+	
+We can manually write the data onto the File using text editors, but there are problems in directly storing the data on to a File
+1. human errors, due to which incorrect data will be stored on to the File
+2. modification of data is difficult because we need to identify the data we wanted to modify and place cursor at the right position within the File to modify
+3. search and identifying the data is very difficult, it is tough to apply multiple filter conditions in searching and accessing the data
+4. we need to manually read the data and perform operation on the data which will be
+	1. time consuming
+	2. leads to in-accurate in computation
+5. data is not secured
+
+To overcome the above problems in storing and organizing the data onto a File we need to use Software applications. The developers build the software applications using which we store/process the data on a File. Enduser will pass the data as an input to the Software application. The application validates the data performs operation on that data and read/writes the data onto the File	
+Advantages:-
+	1. all the data written onto the File through the application is being validated, so there is no chance that invalid data will be stored on the file
+	2. the application itself will locate the data and modify the data consistently across the File
+	3. Searching and identifying the data through complex filter conditions is easy.
+	4. application by itself can read and perform the operation on the data which will results in
+		1. faster operation
+		2. high accuracy
+	5. applications can use data security mechanisms while storing the data onto the file
+-----------------------------------------------------------------------------------------------------------------------
+Looks like all the disadvantages in storing/accessing the data manually onto the Files are overcomed through the help of Software applications. But there are challenges involved in building the software applications that works around the files.
+		
+The application developers has to use programming languages (like java, python, .net, php, scala etc)	in storing and managing the data onto the Files of the computer. The primary purpose of building an software application is to perform business operations which results in high accuracy and faster computation. In addition to that we write the logic in storing/managing the data onto the Files as well.
+So looks like while building the software application we are writing 2 types of logics
+1. business logic
+2. persistence logic
+
+There are lot of challenges are there in building applications to perform persistence operations on the Files of FileSystem.
+	1. The programmer has to use programming language support in writing the code for storing/managing the data on the File of the computer. it looks like most of the programming languages has poor support in working with Files, so the programmer has to endup in writing lot of code in performing the persistence operations on the Files which leads to several problems
+		1. The complexity in writing the code for storing the data onto the File is very high
+		2. takes more amount of time in developing the application to perform persistence operation
+		3. The cost of building the application increases since we need to write more code and it is very complex and takes more time for building
+		4. The more the amount of code, the higher the bugs are
+		5. difficult to maintain
+	
+In addition to the above looks like across every application we need to write the code for persisting the data onto the File which looks like an repeatitive effort
+To overcome all the above problems in persisting the data, the database management systems are introduced.
+	
+Database Management System:
+-----------------------------
+Database management system is a pre-built software application that contains the logic for storing/managing the data permanently on the underlying Filesystem of a computer. The application programmers dont need to write the code for storing/accessing the data from Files of the computer, rather they need to build the applications to communicate with database management system.
+all the complexcities in storing/accessing the data are taken care by the database management system software.
+	
+There are lot of features of database management system are there
+1. Many/most of the database management systems are distributed systems, so that we can run database software on one machine and application on another machine. The Software application connects to the database server remotely over the network in querying and storing the data. Since both are running on dedicated machines it results in faster throughput in running the application
+
+2. The database management system abstracts the complexities in storing and accessing the data from the FileSystem of your computer, so that we dont need to bother about how to store/access the data which greatly reduces the time/complexity and cost of building the application
+
+3. The database management systems provides tools/utilities through which we can periodically take the backup of the data and in the event of crach we can recover the data back quickly, through which we can always can restore the data back.
+	
+4. The database managment systems are highly secured in storing and allows us to access the data, there are authentication mechanisms in place allows us to controlly access the data and manage it
+
+5. database management system softwares supports clustering due to which we have plenty of advantages
+	1. scalability can be achieved in storing the data
+	2. scaled performance in carrying database operations
+	3. high availability
+	
+6. databases allows us to enforce constraint checks and data checks before allowing us to store the data 
+_____________________________________________________________________________________
+13-AUG	
+There are lot of advantages of using database management system
+1. Database management systems are distributed software systems that can be accessed remotely
+2. Database Management systems abstracts the complexity in storing/accessing the data from the underlying storage of the computer, so developer dont need to write complex logic in managing the persistence operations within the application.
+3. Dataase management systems provides tools for backup and recovery of the data in case of crash
+4. highly secured
+5. Most of the database supports clustering by which we have many advantages
+	5.1 scaled storage = distributed storage of the data
+	5.2 scaled processing = through clusting we can achieve scaled performance in managing the data
+	5.3 high availability
+6. we can enforce checks on the data that is written on the database, so that invalid data never goes into the system
+
+There are lot of Software manufacturers who are producing/building/manufacturing the database software and distributing to the world. Few are opensource and many are commercial. We need to download and install the database management system software on our computer to use them
+
+There are different types of database management systems are available
+1. Hierarchial database
+2. Network database
+3. Relational database
+4. Object oriented database
+5. No-Sql or Semi-Structured database
+6. Object storage database
+
+In the above many are of them are not being used in the market and the popular database management system ares
+1. Relational database
+2. No-Sql database
+3. object storage database
+
+
+#1. Relational database management system
+we wanted to always store fields of data that acts as an input in performing the operations using the data, not everything serves meaningful in carrying the operations.
+	
+To permit us to query and access the data from the database management system, the relational database managements systems allows us to define tables with columns with fixed size. So that we can store the data by adding records into the table
+
+sales
+customer_nm  sale_date    mobile_no   email_address    quantity     total_amount    discount    paid_amount
+peter        13/Aug/2022  939373839   peter@gmail.com  10           2500             250         2250
+paul         13/Aug/2022  938339499   paul@gmail.com   11           3500             200         3300
+	
+as we stored the data in structured format with pre-defined columns in a table, database can understand the data we stored, so the database helps us in querying and filtering the data we are looking for rather than we accessing the entire data and filtering it
+
+The relational database management systems provided an langauge called sql (structured query language)
+based on the data structure we query(access) the data
+
+select columns from table where column condition value
+select * from sales where quantity >= 11
+_____________________________________________________________________________________
+15-AUG	
+
+There are 6 different types of database management systems are there
+1. Hierarchial database
+2. Network database
+3. Relational database
+4. Object-oriented database
+5. No-Sql / Semi-Structured database
+6. Un-Structed / object-storage database 
+
+#1. Relational database management system
+Relational database management system allows us to store the data interms tables. These are called as structured database management system.
+Each table should be defined with columns with fixed size and the data will be stored in the tables by adding records into the table, which are also called as "tupples"
+
+Why does the data is stored in table/structured format?
+by defining the tables with fixed columns, what data has been stored within the tables is well-known to database management system, since all the data is structured the database management system can help us in querying, filtering and acessing the data easily. In addition all the data manipulation operations are taken care by database management system itself.
+	
+To work with querying or manipulating the data in the rdbms, the database has provided an standard language called "sql". it is english like language through which we can interact and ask the database to perform operations on the data based on the structure of the data
+
+Why does the name relational database management system?
+always the business data has relationship between them, so one way to represent relationship of the data is keeping the data together by defining in one table.
+but it is not recommended to store the entire data of the business into one single table, because we run into data anamolies
+1. duplicate
+2. updation
+3. insertion 
+4. deletion
+
+Instead break the data into multiple tables and store them separately to avoid anomolies. But to establish relationship between the data we need to define primary keys and foreign keys in the tables.
+
+primary key = a column defined inthe table, which contains unique value among the records of data within that table. no 2 records contains same value in that table, so that we can identify the record using the primary key value and can be used as foreign key in another table to establish relationship
+
+foreign key = a column  defined in a table referring to the primary key column of another table through which we can establish relationship
+_____________________________________________________________________________________
+16-AUG		
+
+
+_____________________________________________________________________________________
+17-AUG		
+	How to install mysql server? [private ec2 instance machine]
+1. Install MySql Server
+sudo apt update -y
+sudo apt install -y mysql-server-8.0
+
+2. alter mysql_native_user password
+sudo mysql -uroot
+alter user 'root'@'localhost' identified with mysql_native_password by 'root';
+exit
+	
+2. configure secure access
+sudo mysql_secure_installation
+
+3. change the bind address
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+
+change from 127.0.0.1 to 0.0.0.0
+bind-address            = 0.0.0.0
+
+4. add new user and grant permission for access remotely
+mysql -uroot -proot
+create user 'rconnectuser'@'%' identified by 'welcome1';
+grant all privileges on *.* to 'rconnectuser'@'%';
+exit
+
+How to install mysql client? [public ec2 instance machine]
+1. sudo apt update -y
+2. sudo apt install -y mysql-client-8.0
+_____________________________________________________________________________________
+18-AUG		
+#2. Database domain
+1. RDS Service [Relational database Service]
+
+For every application we need database as an backend storage system, we can provision an ec2 instance on aws cloud platform and can install and configure an relational database product like an mysql server or oracle database on the cloud instance.
+	
+But there are lot of challenges in provisioning, configuring and managing the rds database by our own:
+1. while hosting an database server on the cloud infrastructure we need to take care of lot of aspects interms of network and security in allowing the database to be accessible for the applications within cloud network. To ensure greater level security we need design and plan the infrastructure up ahead
+2. upon provisioning the cloud infrastructure, the devops engineer has to manually install and configure the database server instance which deals with several aspects of
+	1. product licensing
+	2. downloading the binaries
+	3. installing and configuring the server instance
+3. to ensure the database server is always high-available we need to install on multiple ec2 instances across the availablity zones of the region and the ops engineer has to install and configure mysql server instance in active/passive install across the nodes of the vpc, which is quite complex 
+4. monitoring tools should be in place to ensure the database availablity
+5. scaling the storage is very complex, because for scaling the storage we need to scale-up the ec2 instance which involves considerable amount of down time and impacts the business
+6. scaling the database cluster for high traffic is very complex
+7. backup and recovery is a continous job and is difficult to manage
+
+From the above we can understand provisioning, installing and configuring the relational database server and manging and monitoring is a quite challenging job and requires 
+	1. huge infrastructure
+	2. tools
+	3. and man power in monitoring and managing
+
+Everyone requires an relational database server for running their application, rather we take care of provisioning and managing by ourself aws cloud platform has provided it as PaaS service
+
+1. RDS Service
+RDS stands for Relational database service, it is not an database server by its own rather it is managed service provided by aws cloud platform that supports provisioning and managing the popular relational database server products on aws cloud platform
+The RDS Service takes care of 
+1. installing database software
+2. configuring
+3. security
+4. high availability
+5. scalability (storage/performance)
+6. backup and restore
+7. patching
+8. upgradation
+etc 
+all the cloud lifecycle operations on the underlying database server, so that with no time we can quickly take our application on production.
+	
+RDS Service supports provisioning and managing the below database server softwares on aws cloud platform
+1. MySql Server
+2. Oracle database
+3. Postgres
+4. MariaDB
+5. Microsoft SqlServer
+
+In addition to the above there is an relational database service provided by aws called "Auroradb", which is an direct service of aws cloud platform
+
+How to provision and connect to an RDS Service on aws cloud platform?
+
+_____________________________________________________________________________________
+19-AUG		
+What is RDS Service, why do we need to use it?
+RDS stands for relational database service which is an managed service provided by the aws cloud platform. RDS service provisions and manages most of the popular relational database products in the market like
+1. mysql server
+2. oracle database
+3. postgres
+4. mariadb
+5. microsoft sql server
+
+its an PaaS service that takes care of managing all the lifecycle operations on the underlying database instance provisioned through RDS Service like
+1. provisioning
+2. deprovisioning
+3. scaleup
+4. scaledown
+5. scaleout
+6. scalein
+7. backup
+8. recovery
+9. patching
+10. upgradations
+-----------------------------------------------------------------------------------------------------------------------
+How to provision MySql Server datatabase instance using RDS Service of AWS?
+1. create vpc
+CIDR = 172.16.0.0/16
+NAME = rconnectvpc
+
+2. create subnets
+The RDS Database is always recommended to be provisioned in private subnet only for security and accessibility reasons
+So create multiple private subnets (across the AZs) for HA/Scalability so that RDS can provision the database instance across any of the private subnets.
+	
+#2 private subnets
+rconnectprvsn1 [172.16.1.0/24]
+rconnectprvsn2 [172.16.2.0/24]
+
+#1 public subnet [jumpbox] = to connect to mysql service provisioned above and verify
+rconnectpubsn3 [172.16.3.0/24]
+	1. create internet gateway
+	NAME=rconnectig
+	2. attach to vpc [rconnectvpc]
+	3. create route table at the vpc level
+	NAME = rconnectigrt
+	Subnet associate: rconnectpubsn3
+	Route: 0.0.0.0/0 -> rconnectig
+	
+3. Navigate to RDS Service
+1. From the left navigation menu choose create dbsubnet group
+1.1 click on create dbsubnet group
+1.2 choose the vpc
+1.3 choose the AZ from where we want to pick subnets from
+1.4 choose the subnets within the vpc->AZ where you wanted RDS Service to provision database instance and maintain replicas
+
+What is the purpose of dbsubnet group?
+when we ask RDS service to provision an database instance by choosing the dbsubnet group, it will takes care of replicating the db service instance on multiple subnets of the group for HA and scalability. There are 2 reasons for creating db subnet group
+1. High availability
+2. scalability
+
+4. create an security group at vpc level for dbinstance
+rconnectmysqlsg
+Ingress
+TCP  172.16.0.0/16  3306    
+Egress
+ALL  0.0.0.0/0      ANY
+
+jumpboxsg
+Ingress
+SSH  0.0.0.0/0  22
+Egress
+TCP  0.0.0.0/0  ANY
+
+5. Start creating RDS Service Instance by going to RDS Service from menu
+1. click the create database
+2. choose the database type we wanted to provision using RDS Service
+	1. aurora db
+	2. mysql server
+	3. oracle
+	4. postgres sql
+	5. maria db
+	6. microsoft sqlserver
+3. choose the version of the mysql server we wanted to provision 
+4. the provision mode
+	1. standard = we need to choose and pick the configuration options using which we wanted to create the instance
+	2. easy = the default options will be auto-populated and we dont need to configure any values
+5. Choose the instance Type
+	1. production = all the production capabilities in running the sql instance are enabled
+		1. Multi-AZs (active/passive) provisioning
+		2. EBS Storage Classes
+		3. backup policy
+		4. shape
+		5. enabling autoscaling		
+	2. development/test
+	3. freetier
+	
+6. choose vpc
+7. choose subnet group
+8. security group
+9. shape
+10. choose ebs storage class
+11. autoscaling configurations
+12. dbsinstance name
+13. username/password
+14. authenticationType (username/password, IAM Authentication, SAML/Kerbores Authentication)
+15. ip address (public/no)
+16. launch	
+_____________________________________________________________________________________
+20-AUG		
+	
+_____________________________________________________________________________________
+21-AUG		
+Database domain:
+There are 5 services are there in database domain
+1. RDS Service
+2. DynamoDB
+3. Aurora
+4. Elastic Cache
+5. RedShift
+
+	
+_____________________________________________________________________________________
+23-AUG		
+	DynamoDb
+DynamoDb is an NoSql database provided by the aws cloud platform as an alternate to the RDS service.
+
+Why do we need No-Sql databases when we have RDBMS databases?
+There are problems or limitations with RDBMS database due to which there are not been an ideal choice for few types of applications. 
+If we look at the relational database management system, they allow us to store the data in structured format by defining data interms of tables with fixed-set of columns within it.
+
+_____________________________________________________________________________________
+24-AUG		
+No-Sql database or semi-structure database
+Even though we have relational database management systems to store and query the data effectively, still we have certain limitations with them, alternate to them the No-sql database systems are introduced
+
+Following are the dis-advantages/limitations of relational database management system
+1. Relational database management systems allows us to store the data in structured format where each record in the table has fixed set of columns within them. But not all the data in the real-world is not structured, the skeleton or the attributes of the data we wanted to store per each record for an entity might vary
+
+For eg.. we wanted to store the information about mobile phone in the database, so we can create an mobile_phone table with all the possible information of the mobile to be captured. but all the mobile phones may not have all the features and specifications, in such case when we are storing a basic mobile information most of the columns are left with default values or null due to which huge amount of memory will be wasted while storing such data
+
+Let us take another example like we wanted to store information about the product. We cannot store information about the products in a RDBMS tables since the structure/attributes of the data is not fixed/same for all products
+
+even though we can model such un-structured data in relational tables, the data model becomes quite complex and difficult to program
+
+2. not ideal or suitable for storing non-textual data
+_____________________________________________________________________________________
+25-AUG	
+There are limitations or dis-advantages with RDBMS databases
+1. only suitable for storing structured data of fixed set of columns per each record within the table. poor at handling semi-structured data either, if we try to store semi-structured data it results in
+	1.1 huge memory wastage
+	1.2 or the complexity of the schema would be high and difficult to program
+	
+semi-structured = each record may not have the same set of columns to store the data, so the columns of the data we wanted to store is not fixed
+
+2. the cost of storing the data would be very high while storing the data in relational database management system, because these databases requires huge computing capacity for storing and processing the data, they need high-end server grade machines to install these databases.
+	
+So the storage cost of data = along with storage cost + computing resources cost which is results in huge price of storage.
+So these databases are not ideal choice for storing non-relational data like videos, audios, images etc
+
+3. difficult to achieve highest-level of concurrency
+RDBMS databases supports transactionality so we cannnot achieve highest-level of concurrency
+
+To overcome the above problems the no-sql or semistructured and object-storage databases are introduced
+_____________________________________________________________________________________
+26-AUG	
+There are few limitations or dis-advantages with RDBMS databases 
+1. supports only structured data, but not all the data is structured, and if we store semi-structured data in RDBMS
+	1.1 huge amount of memory will be wasted
+	1.2 schema becomes quite complex and difficult to program
+2. the RDBMS are not recommended to be used for storing audios, videos and images which are un-structured data. by storing these data in RDBMS the underlying machines quickly runs out of resources and requires scaling the database due to which the cost of storage increasing
+3. we cannot achieve highest level of concurrency, because these databases are transactional
+
+From the above we can understand it is not recommended to store semi-structured or un-structured data in RDBMS, till now there is no alternate systems available people used to store the data in RDBMS. Thereafter identifying the problems with RDBMS to eliminate or overcome them other types of database management systems are innovated and introduced.
+1. no-sql databases
+2. object storage databases
+
+1. no-sql database
+no-sql databases are designed to store semi-structured data, the way the data is stored in no-sql databases differs from product to the product there is no standard format or hard and fast rule in the way we the no-sql databases supports storing data
+
+since different products has different storage formats, let us generalize and understand the way these databases supports storing the data
+
+In no-sql databases we dont define tables with fixed-set of columns, because different records data has different columns. 
+So here we dont create tables rather we create a data structure which is loosely structured called usually "collections". 
+For eg.. to store mobile phones information we create mobile collection in which we store information about various different mobiles. Similary we create product collection in which we can store information about different products of varied fields/columns
+
+Now we store the data as records in the collection, each record will contain key/value of data. In a record we can define any number of keys and values which differ from another record of data in the collection
+
+product
+#1 [product_no=837
+	  model="Iphone 13 Pro Max"
+	  color="Red"
+	  storage="128gb"]
+   [product_no=938
+	  model="Samsung 32 inch LED tv"
+	  sound="5.1 Dolby Atmos"
+	  displayType="LED"
+	  pixel="1Million"
+	 ]
+Each row can have different keys and different values, as the structure of the data is not same these are called "semi-structured" databases. So to access the data from these databases we cannot use sql for querying the data so these are even called "no-sql" databases
+
+These databases are suitable for storing
+1. semi-structured data which doesnt have fixed columns in nature
+2. no relationship between the data
+3. dont need transactionality
+
+There are lot of no-sql database management systems are available in the market produced/developed by various different vendors
+1. mongodb
+2. casendra
+3. couchdb
+4. oracle bigdata
+5. aws dynamo db
+6. graph db
+
+each of these databases has their own model of representation allowing us to store the data
+For eg.. 
+In mongodb allows us to store the data interms of json format
+To store data in mongodb we need to create a collection per each type of data. For eg.. we want to store product information create products collection
+In collection we store data as collection documents
+
+we can image a collection       = table of RDBMS
+                 - document     = record in the table
+								    - key/value = column/value (fixed)
+                      (varied)
+	
+product [
+	{
+		"product_no": "938",
+		"title": "Samsung LED Tv",
+		"manufacturer": "Samsung",
+		"price": "100000"
+	},
+	{
+		
+	}
+]
+But when it comes to cassendra database it is called columunar database it allows us to store the data in key/value pair format as how we described above
+
+Now AWS DynamoDB is also an no-sql database management system that should be used for storing semi-structured data.
+	
+AWS DynamoDB database
+----------------------
+AWS Cloud Platform has provided an no-sql database service which is DynamoDB that allows us to store the data by definining interms of keys/values
+There are plenty of no-sql database products available in the market, then why should we use DynamoDB in storing the semi-structured data
+
+There are lot of advantages are there with DynamoDB database 
+_____________________________________________________________________________________
+27-AUG	
+How does no-sql databases stores the data?
+There is no standard format in storing the data by the no-sql databases, different database products stores the data in different format but we can generalize and can understand.
+since no-sql database supports storing semi-structured data where each record may not have all the columns of data so these databases will not store the data in structured tables
+
+rather these databases stores the data in collections. In each collection we store doc/record of information where each record has a varied key/value pair of data
+
+In case of mongodb it supports storing the data interms of docs in a collection. each doc is stored in json format represent a record of information
+Cassendra is called columnar database which supports storing the data in key/value pair
+
+In addition to the above aws cloud platform has provided dynamodb as an no-sql database management system.
+
+DynamoDb
+--------
+There are plenty of advantages of using dynamodb when compared with other no-sql databases available in the market
+1. DynamoDb is an managed service that is hosted by the aws cloud platform which takes care of all the lifecycle operations like provisioning/de-provisioning, scaleup/scaledown, scale-out/scale-in, backup/restore etc. if we are using any of the third-party provider databases, these has to be manually takencare by the ops engineer which is quite complex and huge cost in managing
+2. Optimized for performance at scale = irrespecitve of amount of data being stored in the DynamoDb database we can achieve same level of consistency interms of performance while accessing the data from the database
+3. High Availability / Durability = no matter always the database is available and the data is durable without loss
+4. Integrate with other AWS Services
+5. Cost effective usage based payment model
+_____________________________________________________________________________________
+29-AUG	
+
+_____________________________________________________________________________________
+30-AUG	
+DynamoDB
+DynamoDB is an managed no-sql database provided as part of the aws cloud platform. It is scoped to AWS Region and upon creating the table in a Region, it would be accessible across all the AZ, VPCs and subnets of the region.
+
+For eg.. if we create a table called "orders" within a region ap-south-1 it will be scoped to ap-south-1 and is accessible across all the AZs of the region. we cannot create one more table within the ap-south-1 of the name "orders".
+but we can create a table with name "orders" under us-east-1 without any problem.
+
+DynamoDB supports multi-region replication where a table created in one region can be made accessible across other regions also within cloud platform
+
+DynamoDB is serverless database, self-managed by AWS Cloud platform.
+	
+In DynamoDB we can store the data by creating the tables, while creating the tables in DynamoDB we dont need to specify the columns of data we wanted to store, since it is an no-sql database. In the tables we store collection of items, where each item is nothing but key/value pair of data (we can image a collection as a record in relational table)
+	
+For every table we create in DynamoDB we need to create a column partition_key, it is mandatory and based on the value of the partition_key only the data is distributed across the partitions of the table within the DynamoDB cluster.	
+If a table has only the partition_key then it acts as primary_key of the table, so no 2 collections of the table can carry the same value for the partition_key
+
+The DynamoDB takes the partition_key of the collection and computes the hash value of partition_key we provided and computes the partition in which the data has to stored within the table, so that the data is distributed uniquely across the partitions. So while lookingup for the data based on partition_key the DynamoDB again computes the hash value for the partition_key we supplied and determines the partition in which the data is stored and retrieves it quickly.
+	
+If we see even the data is scaled to terrabytes as well just with one single lookup we can fetch the data consistently across the collections we stored in the table
+
+In addition to the partition_key we can create one more column called sort_key. if a table contains partition_key and sort_key then together both becomes primary_key of the table.
+_____________________________________________________________________________________
+31-AUG	
+
+
+_____________________________________________________________________________________
+1-SEP
+
+There are limitations with derived queries
+1. we cannot apply joins queries
+2. we cannot use groupBy and having clauses
+
+To overcome the above problem the declarative queries are introduced.
+declarative queries
+
+In declarative queries we can declare a method in the repository interface binding with an jpql query to be executed upon invoking the method using the repository object. the query can take parameters which are supplied through method arguments and will be substituted as parameters in query during execution.
+Here we dont need to follow any method naming conventions while declaring the methods, since we are only going to bind the jpql query rather than being derived automatically
+
+we need to use declarative queries for complex requirements like
+1. joins
+2. groupBy
+3. or complex query clauses
+
+interface TripRepository extends JpaRepository {
+	@Query("from Trip trip where trip.days between ?1 and ?2")
+	List<Trip> getTripsBetweenDays(int minDays, int maxDays);	
+}
+
+here the parameters in the query are substituted based on positions, but if more query parameters are there then it is difficult to map positional parameters to the query to overcome the problem
+NamedParameters are introduced
+
+
+interface TripRepository extends JpaRepository {
+	@Query("from Trip trip where trip.days between :mnDays and mxDays")
+	List<Trip> getTripsBetweenDays(@QueryParam(name="mnDays") int minDays,@QueryParams("mxDays") int maxDays);	
+}
+
+@Entity
+@Table("delivery_associate")
+class DeliveryAssociate {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	int deliveryAssociateNo;
+	String fullname;
+	String mobileNo;
+	String emailAddress;
+	
+	@OneToMany(mappedBy="deliveryAssociate")
+	Set<Parcel> parcels;
+	// accessors
+}
+
+@Entity
+@Table("parcel")
+class Parcel{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	int parcelNo;
+	String description;
+	int weight;
+	double shippingCharges;
+	
+	@ManyToOne
+	@JoinColumn(name="delivery_associate_no")
+	DeliveryAssociate deliveryAssociate;
+	// accessors
+}
+
+1. I want all the parcels scheduled to be delivered by the deliveryassociate name: paul
+from Parcel parcel where parcel.deliveryAssociate.fullname=? #implicit query
+
+interface ParcelRepository extends JpaRepository<Parcel, Integer> {
+	@Query("from Parcel parcel where parcel.deliveryAssociate.fullname=?1")
+	List<Parcel> getParcelsByDeliveryAssociate(String deliveryAssociateName);
+}
+
+2. return all delivery associates who are delivering the parcels of weight more than 50 kg
+from DeliveryAssociate da inner join on da.parcels parcels where parcels.weight > ?
+	
+interface DeliveryAssociateRepository extends JpaRepository<DeliveryAssociate, Integer> {
+	@Query("from DeliveryAssociate da inner join on da.parcels parcel where parcel.weight > ?1")
+	List<DeliveryAssociate> getDeliveryAssocateByParcelWeight(int weight);
+}
+
+
+
+_____________________________________________________________________________________
+2-SEP
+Read capacity/ Write Capacity
+The billing on DynamoDB takes place based on read/write units consumed. The DynamoDB is server-less so there is no computing capacity reservered for usage, so the only cost parameter that can be taken into consideration is based on usage of the database.
+while is nothing the read/writes we perform on the DynamoDB
+
+1. Read Unit
+	- 2 eventual consistent reads of size 4kb is considered as one read unit
+	- 1 strongly consistent read of size 4kb is considered as one read unit
+if we read operation resulted in fetching the data more than 4kb more read units will be allocated
+
+2. Write Unit
+	- 1 write of an item upto 1 kb in size 
+	- 1 transaction write upon an item of size 1kb is considered as 2 write units
+if more data has been writen as part of the write, the more write units will be allocated
+
+While creating the table in DynamoDB the ops/cloud engineer can allocate the read and write capacity units for a table 
+For eg.. if we allocate 2 write capacity units and 4 read capacity units means
+within a second for that table it allows
+	2 write operations of 1kb in size
+	1 transaction write of 1kb in size
+	(or)
+	4 write operations of 2kb in size
+	2 strongly consitent read of 2kb in size 
+are permitted on the table
+if any thing beyond the capacity has been recieved, then DynamoDB blocks/keeps the requests under waiting for next interval
+
+From the above we can understand choosing wisely the read/write capacity units are very important to allow operations to be performed on the table. DynamoDB allows us to allocate read/write capacity on table in 2 modes
+
+1. provisioned
+2. ondemand
+
+1. provisioned
+the cloud engineer is going to allocate fixed read/write capacity on table allowing to perform operations. the provisioned mode is the default mode under which a table will be created 
+
+2. ondemand
+aws will automatically scaleup/down the read/write capacity of a table based on the usage.
+-----------------------------------------------------------------------------------------------------------------------
+_____________________________________________________________________________________
+3-SEP
+Database domain
+1. relational database service
+2. auroradb
+3. dynamodb
+4. elastic cache
+5. redshift 
+
+1. Elastic Cache
+_____________________________________________________________________________________
+6-SEP
+How does the application will persist or fetch the data from database management system?
+Each application upon performing the operation will generates data as an ouput, the application should be able to persist the data into the database management system permanently for future usage, unless otherwise we cannot reuse the data in computing various different operations on the data
+
+In order for an application to persist the data into the underlying database it has to perform the below activities
+1. the application should establish a connection/open connection to the underlying database
+2. the application has to pass the sql query asking the database to perform operation over the network
+3. the database will parse the sql query and performs an relevant operation on the underlying data
+4. the output of executing the sql query should be send back to the application over the network
+5. the application will close the connection to the database
+
+We store the business data that is produced out of the application into the database management system. Not all the data we stored in the underlying database management system will keep changing. There is some amount of data that seems to be static or constant in nature either permanently or for certain amount of time.
+	
+Let us try to understand the nature of data based on usecases:
+#1. The information about the merchants stored in an e-commerce platform will change very rarely which is an example of static data 
+
+#2. The board/university publishes the results of an examination being conducted by storing the data into the database. once the results are announced, no matter how many number of times we are acessing the data, it will never change which is an example of static data
+
+#3. The product information that is added into an ecommerce application by the merchange will seems to be remain constant for longer amount of time and may undergo changes very rarely which is another example of static data
+
+#4. There is a tour planner who has organized an trip and the information about the trip has been published through their application by storing it in the database. once the tour planner publishes the information about a trip, it will remains constant and will never change
+
+Here we have understood most of the data seems to be permanent/remains constant in nature, let us explore uses cases on the data which might change at regular intervals of time
+
+1. Daily Sales report:
+The sales information pertaining to the products of a company should be stored into the database, so that the business team can pull insight full information regarding how does the business is operating by deriving the sales dashboards/reports.
+But the information about the sales will not keep-on changing rather they would be modified at regular intervals of time.
+	
+Frequently modified data
+1. Stocks information within a stock market will be keep changing quite frequently which is an example of frequently modified data
+-----------------------------------------------------------------------------------------------------------------------		
+_____________________________________________________________________________________
+7-SEP		
+An application has to store the business data within the database for future usage and further processing.
+Not all the data that is being stored as part of the database of the application will be keep changing. There can be few data that seems to static/constant permanently or certain interval of time.
+	
+Let us explore the usecases pertaining to the nature of data:
+#1 static data
+1.1 an examination results published by the university or educational board seems to be constant/static permanently and will never undergo changes
+1.2 upon adding an merchant in the e-commerce website, the information about the merchant seems to be almost constant/static and very rarely it might change
+1.3 a product that is being added by an merchant into an ecommerce website seems to be constant and may undergo changes very rearly
+1.4 Tour planner publishes the information about the tour packages into the application database and would not change the information unless required (very rarely)
+	
+#2. moderately modified at regular intervals of time
+2.1 For eg.. an shippment being routed by an cargo service provider or courier provider. once the parcel has been dispatched until it arrives to the next destination the information/status of the parcel will not be changed and remains constant for most of the time
+
+#3. frequently modified data
+Leader boards
+In a gaming application based on the points secured by the players the leaders board are drawn showing the position of the player among the other players in the world. here the points will be keep on changing for the different players and the leader board with ratings/rankings will change very frequently which is considered as frequently modified data 
+
+Let us understand how can the application can handle these various data of different nature
+#1 static data		
+	
+_____________________________________________________________________________________
+9-SEP	
+There are 6 features are there in spring boot
+1. auto configurations
+2. starter dependencies
+3. actuator endpoints
+4. devtools
+5. embedded servlet containers
+6. spring boot cli
+
+4. devtools
+devtools helps the developers in sophisticated developing the application while working with spring boot.
+during the time of development of the application, developer goes in cycles in debugging and modifying the code multiple times. each time the developer modifies the code, he has to recompile, repackage and redeploy the application by restarting the server.
+The amount of time the developer would spend in debugging the application would be quite high that is where devtools comes to rescue us
+each time the developer modifies the code during executing the devtools identifies the modified class file and reloads the classfile into jvm memory by replacing the old copy of the class file thus reflecting the changes
+hence we dont need any repackage, redeploy and restart of the server thus saves huge amount of development time
+
+#5. embedded servlet containers
+
+while working with servlet / spring mvc based applications we need to have servlet containers installed and configured on the target environments in which we are going to deploy the application.
+In an microservices world the application is broken down into smaller microservices and deployed independently from each other, which means each mircroservice has to be deployed and executed on its own jvm or servlet container environment. So the time it takes to setup/configure the container to make the microservices application execute takes lot of time.
+	
+Instead to rescue us from the above problem, embedded servlet containers are introduced. The container is shipped as part of the code itself so we dont need to install, package and deploy the application on the server rather we can directly execute the application on the server like a regualar java application
+	
+#6. spring boot cli
+we can quickly build the prototypes and verify them by using spring boot CLI. we dont need to create the projects, declare configurations etc 
+directly implement the functionality we wanted to experiment or expore by leaving the rest of the aspects of running the application to the SpringBoot CLI
+
+we can write and run directly an class itself on a container without any deployment or configuration	
+_____________________________________________________________________________________
+10-SEP
+1. static data
+2. moderate modified data
+3. frequently modified data
+
+
+_____________________________________________________________________________________
+12-SEP
+We can classify the data into 3 types
+1. static data
+2. moderate data
+3. frequently modified data
+
+#1. static data
+The static data is nothing but throughtout the lifetime of the application the data will not change, and will not grow. So, it is an good candidate for caching
+
+#2. moderate data
+Moderate data seems to be most of the time fixed but would rarely going to change or might grow during the runtime of the application. since the data is runtime and may modify during the execution of the application we need to cache the data based on below 2 characteristics
+1. we need to apply retention policy while storing the data into the cache like TTL, LRU, MRU, MFU, LFU algorithms
+2. whenever the application has modified the data into the database, we should have a mechanism in place to remove the data from cache if exists
+
+#3. frequently modified data
+Frequently modified data is the data that would gets modified very frequently through the endusers operations on the application. Such data is not being considered as a candidate for cache, because the cost of maintaining the data in the cache seems to be overhead than using the data from cache.
+	
+But there is an exception to this, for eg.. applications like
+1. gaming
+2. stock markets
+3. sales reporting
+where the frequency at which we access the data seems to more than the duration of interval in which the data would be changed. So such data if it is being used more frequently than the interval change can be cached for short-interval of time 
+1. we should maintain TTL or any retention algorithms in cleaning up the data
+2. and should stale the data whenever there is change 
+
+How about maintaining the data in the cache within the cluster deployments?
+_____________________________________________________________________________________
+13-SEP
+
+_____________________________________________________________________________________
+14-SEP
+What is cache, why do we need caching?
+Cache is used for storing the data temporarily within the memory, so that we can avoid repeatedly accessing the data from the database and serve the data from the cache. By applying the caching mechanism we can improve the scalability & performance of the application
+
+depends on the nature of the data and their usage we need to decide and cache the data within the application
+1. static data = always can be cached permanently within the application
+2. moderate data = since it is runtime data, that should be cached based on retention policy and should mark the data as stale whenever the underlying data has been modified
+3. frequently modified data = it is not an good candidate for caching, but can be considered to be cached given if the frequency at which the data is accessed is more than the interval of change then we can cache the frequently modified data as well.
+	
+when we are deploying an application in clustered environment, we need to use distributed caching technology for caching the data. There are lot of third-party caching libraries provided by various different vendors
+1. ehcache
+2. jcache
+3. swarncache
+4. rediscache
+5. memcache
+6. oscache
+7. coherence cache
+
+The developer writes the code as part of his application using the cache libraries/apis in caching the data, whereas the devops/aws cloud engineer has to
+1. provision the infrastructure
+2. install and configure the cache libraries 
+3. take of securing aspects in ensuring the cache is not comprimised
+4. scalability, high availability
+5. monitoring
+taken care in managing the cache
+
+manually taking care of provisioning, installing, configuring and maintaining the cache on the clustered instances over the network is a very difficult job. The aws cloud platform has provided Elastic Cloud Cache service 
+
+Elastic Cloud Cache service
+-----------------------------
+The Elastic Cloud cache service is an managed service that takes care of provisioning, installing, configuring and managing the third-party caching libraries on aws cloud platform, which is similar to RDS service.
+As of now there are 2 cache library providers are supported by Elastic cloud cache
+1. REDIS
+2. MEMCACHE
+
+There are differences interms of features between these 2 cache libraries, so based on the requirement we need choose an appropriate provider that suites our application
+1. Mem Cache: supported data types: simple key/value pair
+   Redis Cache: supported data types: complex types which includes lists, sets, hashes and sortedset etc
+
+2. 
+Mem Cache: Multi-thread support
+Redis Cache: No Multi-thread support
+
+3. 
+Mem Cache: Node upgrade is not supported (we cannot change the shape of the CacheNode)
+Redis: Node shape upgrade is supported
+
+4. 
+Engine upgradation: both providers support engine version upgrade
+
+5. 
+Mem Cache: Replication is not supported, so fault-tolerance is not there
+Redis: Replication is supported, so high availability is guaranteed
+
+6. 
+Mem Cache: Data Partition and shrading is supported
+Redis Cache: No support for data partition
+
+7. 
+Mem Cache: doesnt support automatic fail-over
+Redis: Optional can be configured
+
+8. 
+Mem Cache: No support for publish/subscriber model
+Redis: supports publish/subscriber model
+
+9.
+Mem Cache: supports huge volumes of data to be cached
+Redis: doesnt support huge volumns of data to be cached
+
+10. 
+Mem Cache: no back and restore support
+Redis: backup and restore is available
+
+How to provision an AWS Elastic Cache?
+
+_____________________________________________________________________________________
+15-SEP
+How to provision an elastic cache (redis) on aws cloud platform?
+Elastic Cache is an vpc scoped service, we access the cache only from the applications. The applications are deployed on compute instances (ec2) of the cloud platform. So inorder to make the cache accessible across all the instances of the application we need to provision the cache on vpc network of the application.
+	
+#1 since we access the cache only from the application, and should not let the cache accessed from public network we need to provision the elastic cache instance on private subnet of the vpc
+
+#2 By default AWS Cloud platform creates 2 replicas of the Elastic Cache for fail-over and fault-tolerance, so we need to create an subnetgroup in replicating the cache 
+
+#3. While setting up the subnet group it is recommended to distribute across the AZs of the region so that high-availability is guaranteed
+
+#4. upon provisioning the elastic cache, to verify the cache is working or not we need to consume it by placing the message/data and access it back. 
+since we are not application developers, we can verify the cache and its connectivity by provisioning an ec2 instance on public subnet, install redis-tool on ubuntu operating system, using which we can connect to cahe and verify
+
+once we verified the cache configuration we can share the endpoint of the cache to the developers to let them integrate within their application
+-----------------------------------------------------------------------------------------------------------------------
+#1 create an vpc
+vpcname: gooddealsvpc
+cidr: [10.0.0.0/16]
+
+#2. 
+we need 3 subnets as per the above plan
+2 = private subnets for HA
+1 = public subnet
+
+2.1 
+gooddealspubsn1
+cidr: 10.0.1.0/24
+	
+2.2
+gooddealsprvsn2 | gooddealsprvsn3
+10.0.2.0/24       10.0.3.0/24
+	
+#3.
+create an internet gateway (gooddealsig) and attach to the vpc
+#4 route the public network traffic of that subnet throught the ig by associating through routetable
+
+#5
+create 2 security groups
+5.1 ec2 instance to allow public ssh access
+5.2
+securitygroup: gooddealsecsg
+in-bound: 10.0.0.0/16 6379    allow
+out-bound: 0.0.0.0/0  anyport allow
+
+#6 we need to create elastic cache
+
+_____________________________________________________________________________________
+16-SEP
+How to provision an elastic cache on aws cloud platform?
+1. The cache is used as part of application only in general, so the elastic cache should be provisioned within the private subnet of the application vpc.
+2. by default aws cloud platform provisions the multiple replicas of cloud cache for fault tolerance & fail-over safe we need to create subnet group to 	provision the cloud cache
+3. after provisioning to verify the cache before delivering to the developers we need to provision an ec2 instance on public subnet and install redis-tools (redis-cli) using which connect to the cache and verify the instance
+
+#1. create an vpc
+vpc name: gooddealsvpc
+cidr: 10.0.0.0/16
+	
+#2. create 2 private subnets & 1 public subnet
+1 public subnet
+gooddealspubsn1 [10.0.1.0/24]
+
+2 private subnet
+gooddealsprvsn2 [10.0.2.0/24]
+gooddealsprvsn3 [10.0.3.0/24]
+
+#3 create an internet gateway and attach to the gooddealsvpc
+internet gateway: gooddealsig
+attach to : gooddealsvpc
+
+#4 route the public network traffic of the subnet through the ig by creating route table
+gooddealsigrt
+10.0.0.0/16 local
+0.0.0.0/0   gooddealsig
+
+
+#5 create 2 security groups
+1. allow ssh access to the ec2 instance for connecting to the cache
+2. allow elastic cache port to be accessed within the vpc
+
+gooddealsec2sg
+in-bound
+SSH   22  0.0.0.0/0  allow
+outbound
+ALL   ANY 0.0.0.0/0  allow
+
+gooddealsecsg
+inbound
+Custom TCP  6379   10.0.0.0/16  allow
+outbound
+ALL   ANY 0.0.0.0/0  allow
+
+we setup network infrastructure required for hosting/provision an elastic cloud cache, let us understand the steps for provisioning the cache
+1. choose the cache engine we want to provision the cache cluster
+	1.1 redis
+	1.2 memcache
+	
+2. 	Choose Cluster Mode
+	2.1 enable = cluster mode enables replication across multiple shards for enhaced scalability and availability
+	2.2 disable = The Redis cluster has only one shard with one primary node and upto  5 read replicas
+	
+3. Cluster Info
+	3.1 Name 
+	3.2 description
+	3.3 Location
+	AWSCloud or OnPremises
+	3.4 Multi-AZ
+	3.5 Engine Version
+	3.6 Port
+	3.7 NodeType (Shape)
+	3.8 number of replicas
+	3.9 subnet group settings
+		1. choose the AZ and Subnets under which the replicas has to be created
+		2. choose vpc	
+	3.10 Backup configuration
+	3.11 encryption settings
+	3.12 Maintainance Window 
+	3.13 choose security group
+	3.14 add tags
+	3.15 create
+------------------------------------------------------------------------------------------------------------------------
+Launch Ec2 instance to test and verify the cache configuration
+1. provision an ec2 instance with ubuntu operating system
+2. update and install redis-tools software package using ubuntu apt
+		
+sudo apt update -y
+sudo apt install -y redis-tools
+3. copy the primary endpoint of the elastic cache that we provisioned above and use redis-cli to connect and verify the cache
+4. redis-cli -h endpoint -p portNo
+
+5. set key value = to store data into the cache
+6. get key = to access the data from the cache
+7. key * = to see all the keys in the cache
+8. ping = to verify connectivity with the cache
+------------------------------------------------------------------------------------------------------------------------
+
+
+_____________________________________________________________________________________
+17-SEP
+
+compute domain
+The computing services required for running the application are part of compute domain. There are 5 services are there in compute domain
+1. ec2
+2. elastic beanstalk
+3. elastic load balancer
+4. autoscaling group
+5. lambda
+
+#1. ec2
+ec2 stands for elastic compute cloud, it is nothing but an bare machine installed with operating system (AMI) provided as an infrastructure resource by the aws cloud platform
+How to deploy an multi-tier java application on aws cloud platform?	
+_____________________________________________________________________________________
+19-SEP
+Compute Domain
+There are 5 services are there in compute domain
+1. elastic compute cloud (ec2)
+2. elastic beanstalk
+3. autoscaling group
+4. elastic loadbalancer
+5. lambda
+
+4. elastic loadbalancer
+Load balancers (LBR) are used for distributing network/application traffic across the nodes on which our applications are running.		
+_____________________________________________________________________________________
+20-SEP		
+		
+		
+_____________________________________________________________________________________
+21-SEP		
+what are the problems with executable jars with dependent libraries?
+There are 3 problems are there in distributing an executable jar with dependent libraries to the customer
+1. no way to package and distribute as an single distributable application
+2. the dependent jars has to be placed within relative directory location of the application jar
+3. the client/customer has to be inside the directory of the application jar to launch the application
+
+To overcome the above problem we can use uber jar or fat jars technic. The uber/fat jar means the application jar and the dependent library jars are packaged into one single jar file
+which means we unjar all the classes of all the libraries/application jars and package into one single jar file.
+
+There are lot of problems with fat/uber jars:
+1. each time while delivering the application we need to unjar and rejar all the classes as a fat jar which takes huge time
+2. we cannot identify which dependents are being used for our application
+3. by looking at the distribution we cannot even know what versions of the dependencies we are using
+4. the vendor shipped signed jars would be broken upon unjar the libraries
+
+To overcome the above problems and ship an application as a single distributable application, spring boot has provided spring boot executable jar feature.		
+		
+_____________________________________________________________________________________
+22-SEP		
+There are lot of challenges are there in setting up an load balancer for an application over the cluster.
+1. provisioning the required infrastructure and installing and configuring the load balancer manually takes lot of time
+2. to host and route the traffic to an application on the cluster, we need to configure servergroups and enable path-based routing at the load balancer level, which is highly complex job
+3. each time there is a change in the servergroup dues to an node went down, the ops engineer has to identify and modify LBR configuration which is an recurring and maintainance job
+4. need to enable healthchecks to determine faulty nodes and stop routing the traffic
+5. need to configure or enable SSL on the Load balancer which is an difficult job
+6. if the loadbalancer itself is down, the application availability becomes zero. so need to host the load balancers based on HA configuration
+7. to enable HA and Fault Tolerant the ops engineer has to configure sticky session and session replication which is complex things to achieve
+
+Looking at the above we can understand provisioning, installing, configuring and maintaining the load balancer manually seems to be an difficult job instead we can use AWS Cloud Loadbalancers		
+
+_____________________________________________________________________________________
+23-SEP		
+The basic functionalities of the load balancers:
+1. distribute traffic across the nodes of the cluster on which our application is running
+2. high availability & fault tolerance through session replication
+3. sticky sessions
+4. path-based routing
+5. ssl for security
+6. periodical healthchecks 
+
+We can setup an load balancer manual to route the network traffic across the nodes of the cluster but there are lot of challenges are there
+1. setting up the infrastructure and installing & configuring the load balancers takes lot of time
+2. configuring the servergroups and routing the requests based on path is very complex 
+3. if there is node in the cluster went down, we need to reconfigure the server group by detaching the node and attaching the new node, which is an maintainance aspect
+4. enabling ssl configuration is a difficult job
+5. healthchecks has to be configured to identify the faulty nodes to stop routing the network traffic to those nodes
+6. loadbalancer should be configured as HA
+7. for fault tolerance and HA we need to enable stickysession and session replication
+
+To overcome the above problems AWS cloud platform has provided elastic loadbalancer service.
+Elastic Loadbalancer
+-------------------- 
+We host our applications on ec2 instances of AWS Cloud platform. AWS Cloud platform recommends us to host the application across the ec2 instances of multiple availability zones. To route the traffic of our application to any of the ec2 instances across AZs of the region it recommends us to use Elastic Load Balancer.
+	
+We can take lot of advantages by using an load balancer:
+1. fault tolerant = if a machine on which our application is running has been crashed, always we have other machines on which our application is running to serve the requests
+2. resilience = In case an ec2 instance is heavily loaded with huge traffic, the loadbalancer can route/redirect the traffic to other nodes helping the node to recovery
+3. high availability = always we have instances on which application is running so that one goes down there is another available for serving the request
+4. scalability = if more number of requests are received for our application we can deploy our application on one more ec2 instance and add to the backend sets of the LBR to route/scale 
+
+1. elastic load balancer is an traffic distributor across the services or resources of AWS like
+- ec2 instance
+- autoscaling group
+- elastic beanstalk
+
+2. spans across the availability zones of the region
+3. the elastic loadbalancer is highly available, resilient and scalable, all these aspects of Loadbalancer are managed by the AWSCloud platform we dont need to provision or configure it
+4. health checks = the LBR conduts periodical health checks to determine the fault nodes and routes the requests only to the nodes that are available
+5. supports autoscaling group (asg) = autoscaling group takes care of scaling up the ec2 instances of our application automatically based on the threshold configuration like cpu utilization : 85% scale-out, memory etc, and modifies the LBR backendsets automatically to route the traffic to scaled instances as well.
+when the traffic patterns has been decreased the automatically the asg deprovisions or scale-in the instances to reduce the cost
+
+The AWSCloud platform supports 4 types of loadbalancers
+1. AWS Classic Loadbalancer 
+Initially AWS has provided only one loadbalancer service on AWS Cloudplatform called "classic loadbalancer", there after it has been deprecated and AWS encourages us to use other loadbalancers apart from classic. and right now the classic loadbalancer is not available.
+	
+Modern Loadbalancers (2017):	
+2. Application Loadbalancer = application loadbalancer should be used for routing and loadbalancing the http/https traffic to our application. The application loadbalancers works at application layer and intercepts and routes the requests based on path
+
+
+3. Network loadbalancer = 
+
+4. Gateway loadbalancer
+
+_____________________________________________________________________________________
+26-SEP		
+Elastic Loadbalancer
+The AWS Cloud Platform Elastic Loadbalancer has many advantages
+1. fault tolerant
+2. resilience
+3. high availability
+4. scalability
+
+Features:-
+1. AWS Cloud Loadbalancer is a traffic distributor for routing or loadbalancing the requests across the services or resources of AWS like ec2 instances, elastic beanstalk and auto-scaling group etc
+2. it is available per region level
+3. spans across all the AZs of the region
+4. Cloud Loadbalancer is highly available, resilient and scalable. these aspects of the LBR are taken care by the AWS Cloud platform itself
+5. Healthchecks will be conducted periodically, to identify and route the traffic to only the available nodes of the cluster.
+6. supports auto-scaling group
+
+There are 4 types of load balancers are supported by aws cloud platform
+1. classic loadbalancer
+2. Application loadbalancer (ALB)
+3. Network load balancer (NLB)
+4. Gateway load balancer (GLB)
+	
+1. Application loadbalancer
+The Application Loadbalancer is used for routing or loadbalancing the incoming http/https requests across the nodes of the on which our application is running. it works at layer 7 of OSI Model
+
+
+2. Network loadbalancer
+
+_____________________________________________________________________________________
+27-SEP		
+
+
+_____________________________________________________________________________________
+28-SEP		
+
+
+_____________________________________________________________________________________
+29-SEP		
+http://ip:port/foodies/actuator/health
+
+_____________________________________________________________________________________
+
+
+
+
+

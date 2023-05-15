@@ -1,0 +1,1287 @@
+Cloud Platform
+on-demand delivery of computing resources/services to the world is called "cloud computing"
+	
+What is a software application?
+Software applications are written in a programming language, that contains set of instructions to be executed to meet the business requirements of the organization/owner
+programming language
+1. java
+2. .net
+3. python
+4. php
+5. ruby
+6. scala
+
+The software applications can be majorly categorized into 5 different types
+1. standalone applications
+2. distributed web applications
+3. enterprise applications
+4. mobile applications
+5. batch-processing applications
+depends on the type of the application we deliver the application to the enduser
+
+#1. standalone application/desktop application
+standalone applications are even called as desktop application or single user applications which are downloaded/installed and executed locally on a computer system.
+1.1 Single user can use the application at onetime
+1.2 They use the resources of the computer and execute locally
+1.3 The user has to install the application software to use it.
+	
+#2. Distributed Web Applications
+These applications are even called client-server technology applications.
+The distributed web applications servers webpages or html pages over the network offering information or business service of an organization
+The distributed web applications can be categorized into 2 types
+
+1. static web applications
+The static web applications comprises of only HTML/web content that will be served to the enduser. These applications are non-interactive and enduser cannot pass information as an input to perform operation. always the same data will be served to the enduser no matter how many times the user accessed
+	
+2. dynamic web applications
+These are the applications that allows the enduser to interact by passing data as an input to them through HTML Forms, reads the data perform operation and returns response back to the user
+To build dynamic webapplication we need a backend programming language
+1. java
+2. .net
+3. php
+4. python
+5. perl
+6. scala
+7. ruby
+______________________________________________________________________________________
+14-Jun
+
+What is an software application, why do we use it?
+Software applications are written using programming languages comprises of instructions that are executed to meet the requirements of a business organization/system/entity.
+	
+There are 5 types of software applications are there
+1. Standalone/Desktop applications
+2. Distributed web application
+3. Enterprise application
+4. Mobile application
+5. Batch Processing Systems
+
+#1. Standalone/Desktop applications
+These are single-user applications that are installed and executed locally on the computer system. At a time only one user can use the application.
+These applications directly takes the data as an input from the keyboard of the computer through the user, performs the operation and prints the output to the Console or output devices attached to that system.
+	
+#2. Distributed Web applications
+These are the application that are accessible over the network and exchange HTML/Web content over the network
+There are 2 types of web applications are there
+1. static web application
+2. dynamic web application
+
+#2. dynamic web application
+What are dynamic web applications, how do they look like, why do we need to use them?
+
+_____________________________________________________________________________________
+15-J
+
+What are client-server architecture based applications, how do they work?
+In the client-server architecture based applications there are 2 parts are there
+1. client program
+2. server program
+
+#2. Server program
+The server program is the located centrally and is accessible to all the client programs. The server program does minimal processing and is used for distributing the data across all the client programs
+
+#1. Client program
+The client program is the thick client program, it is installed on a computer and connects and communicates over the network to the server program to retreive data and perform operation. The client will access the data from the server program by communicating over the network	and performs operation locally on the client computer and stores/pushes the data back onto the server to distribute/share the data with others
+
+advantages:
+1. The operations are carried at the local to the client application, so that the load on the server is less and performance of system is very high
+2. By nature these client-server applications exchanges very less amount of data, so that these applications are idle suitable to work on low-bandwidth communication channels as well
+
+dis-advantages:
+1. The client programs are thick client applications that consumes the cpu/memory to perform operations on the client computer, we need high-end machines at the client side. So the cost of setting up the infrastructure required in running these applications are quite high
+
+2. The client application has to be installed on each client computer, setting/installing the application on each computer within the organization is going to take lot of time.
+	
+3. We need a dedicated IT team, required to be available 24X7 in monitoring, installing, configuring and maintaining the applications across the organization. The cost of maintainance of these client programs are pretty much high
+
+4. Different branches of the organization has different computers of varied hardware configurations and operating system platforms, the client application that is being built may not work across all the hardwares or operating system platforms. It is tough to achieve compatibilty in running the software application across varied architectures
+
+5. Patching and upgrading the client software program across all the machines of the organization is very difficult and requrires huge amount of time and cost
+
+6. since the processing/operations takes place at the client-side achieving data consistency is very difficult
+
+How to overcome the above problems?
+To overcome the above problems, the distributed web applications are introduced.
+	
+_____________________________________________________________________________________
+16-J
+
+Distributed web applications
+In a distributed applications, there are 2 parts are there
+1. server
+In a distributed web application the server computer will be running with an web application, that can take the web request over the network from the client. then performs operation and returns an HTML/Web page as a response back to the client.
+The whole business logic/processing is centrally located on the server computer only
+
+2. client
+The client is a thin-client application, the application will not perform any operation at the client-side, the client application just collects the data from the enduser, sends the data over the network to server application. and receives response from the server and displays to the user
+
+if we see, the client-applications doesnt consume any cpu/memory in performing operations, so these are called thin-client applications. A web browser can act as an thin-client application to be installed and used at client computer
+
+advantage:-
+	1. To run the thin-client application we can use thin-client machines/computers which doesnt have any cpu or huge memory in running these browsers. So, the cost of setting up the infrastructure required for running the thin-client application is very less
+	2. No need to install the thin-client application on the thin-client station, as the web browsers are the default software that comes as part of the system itself. So we dont need to spend lot of time on installing and configuring the client application on the computer.
+	3. There is no need of upgrading/patching the thin-client software which saves huge amount of maintainance cost
+	4. As we can use any browser software to access the server application, we dont see any compatible issues interms of hardware architecture or operating system platform in using the application
+	5. No need of a dedicate IT Support team to monitor, maintain and install the client s/w applications
+	
+dis-advantage:-
+	1. if the network brokes down the whole system/business goes down, so we always need an backup line to ensure we have the connectivy 24/7 which is quite expensive to maintain
+	2. we need high-speed internet/data line to communicate with the server. as the huge volumes of data will be transmitted between the server/client programs
+	3. if the server computer brokes down, the whole system goes down, so we need to ensure always we have multiple servers on which application is running for high-availability
+	4. If more users are communicating with server/application, then the load on the server will be high and results in performance degradation. so we need to ensure we run our application on multiple servers to handle the load
+	
+	
+There are 5 types of applications are there
+1. standalone / desktop applications
+2. distributed web applications
+3. enterprise applications
+4. batch processing applications
+5. mobile applications
+
+#3. Enterprise applications
+Enterprise application refers to very large application which comprises of multiple functional modules that are required for running an enterprise business system.
+	
+_____________________________________________________________________________________
+17-J
+
+We can classify the applications broadly into 5 categories or types
+1. standalone application
+2. distributed web application
+3. enterprise application
+4. batch processing application
+5. mobile application
+
+#3. enterprise application
+An enterprise application is nothing but a very large scale application that comprises of several modules catering to various different functionalities of the business.
+These modules are pre-built and are integrated to work with each other sophisticatedly
+
+#4. batch-processing application
+batch processing systems works with large volumes of data being processed in batches and produces the desired output
+--------------------------------------------------------------------------------------------
+How to host an distributed web application to the public world?
+	
+_____________________________________________________________________________________
+22-J
+How many types of applications are there?
+We can classify the software applications broadly into 5 types
+1. standalone or desktop application
+2. distributed web application
+3. enterprise application
+4. mobile application
+5. backend application
+
+How to host an distributed web application to the public world?
+Hosting an application is a process of making the application live or accessible to the people around the world. To make an application accessible to the people around the world we need to do 2 things
+1. we need a hosting space or a computer on which we should be able to run our application
+2. we need a domain name registered with a dns registry to route the request to our application
+
+How can we host an application to the world, where can we get the hosting space?
+There are many ways we can host an application let us explore
+#1. Inhouse hosting
+
+_____________________________________________________________________________________
+23-J
+
+How to host an distributed web application and make it accessible to the world?
+Hosting is the process of making the application accessible to the world. In order to host an application there are many options are available.
+	
+Let us explore how can the applications can be hosted prior to cloud.
+	
+#1. In-House hosting
+The business owner in order to offer business services to the customers around the world, he has to host the application. For which in an in-house hosting,the business owner itself procures required infrastructure and software for hosting the application as below.
+	
+There are 2 main aspects required for hosting an application
+1. Infrastructure
+	1.1 We need server grade computer system with high capacity cpu, ram and storage for handling the requests send by the customers/endusers
+	1.2 need a backup server incase the primary machine has been crashed to ensure 24x7 availability of the application
+	1.3 we need an infrastructure/space to setup the computing resources in running the application.
+	1.4 require an dedicate highspeed leased internet connection, to support huge customer traffic
+	1.5 an backup line to ensure the application is always available online
+	1.6 24x7 power supply to ensure zero-downtime of the application
+	1.7 Air conditioned rooms, to ensure the hardware degration will not be there and throughput of the applications are going to be high
+	1.8 Network devices, Routers and firewalls for setting up the network and securing it
+	
+#2. Softwares
+To run an application we need software packages and libraries need to be installed and configured unless otherwise we cannot run an software application, below are the softwares required for running the application
+	2.1 we need operating system software need to procure a commercial license in running the application and making them accessible to the public
+	2.2 ontop of the operating system we need to procure/purchase the software packages and libraries required for running an application
+	2.3 We need an system administrator who takescare of installing and configuring the software packages and libraries required for running/deploying the applications
+	2.4 we need an network engineering team who should be available 24x7 takes care of setting up the network infrastructure that is required to allow the applications to connect over the network and make them accessible. The network team has to setup the network, and configure necessary settings and monitor 24/7 for the safety of the systems.
+	2.5 We need an dedicated administration team available 24/7 who takes care of monitoring the infrastructure and replaces the failed hardware for continuity and availability of the application
+	2.6 we need application support and monitoring team to ensure the application is running properly, in the event of crash it has to be brough back
+	
+The in-hosting of an application is also called as "on-premise" hosting where the application is being deployed/hosted at the client/businessowner environment itself. it has lot of drawbacks/dis-advantages with in-house hosting
+
+dis-advantages/drawbacks:-
+1. The cost of investment required for setting up the infrastructure, procuring the software license in hosting the application is very huge
+2. The initial setup required in setting up the infrastructure resources and software packages in hosting the application takes lot of time at an average of 30-45 days time needed to bring up the machines for hosting the applications for eg..
+		1. we need the space to be setup with required infrastructure
+		2. power cabling need to be done for handling the load
+		3. airconditioned to be setup
+		4. power backup and generators need to be deviced
+		5. lan cabling need to be done
+		6. leased internet lines has to be procured
+		7. hardware assembling, network setup and configurations has to be taken care
+3. we need to hire manpower or relevant expertise required for carrying all the above operations which takes lot of time
+4. we need to maintain the administrators, network engineers and application supports engineers to monitor and manage applications which is going to inccur huge maintainance cost
+5. the cost of procuring the software licenses in running the application is very high
+6. we need to perform necessary validations/verifications to ensure our network/systems are safe and are not prone to any security breach
+
+From the above we can understand in-house hosting is not suitable for hosting the software applications for a small / moderate organizations/business vendors. 
+	
+It is ideal for only enterprise organizations who can bare the infrastructure and maintainance cost in hosting the application in-house
+
+advantages:-
+	1. highly secured
+	2. more control
+	
+The in-house hosting is done by banking and financial organizations who need high-end security 
+
+_____________________________________________________________________________________
+24-J
+How many ways an distributed application can be hosted and made available to the public world?
+There are 4 ways of hosting an distributed application
+
+#1. In-House hosting
+The business owner by themself procure infrastructure resources, software required for hosting and making the application available for the public. So as part of the process of hosting he has to acquire/procure
+1.1 Infrastructure
+	a) high-end server grade machine and a backup machine
+	b) leased internet line and a backup line
+	c) network devices like network adapters, routers & firewalls
+	d) space for managing the hardware infrastructure
+	e) aircooled rooms
+	f) 24x7 power supply & backup
+	g) high-capacity power/lan cabling
+	
+1.2 Software and Manpower 
+	a) operating system
+	b) software packages and libraries
+	c) administration team to install and configure the softwares required for hosting the application
+	d) networking team to setup the network infrastructure
+	e) support engineering team to monitor the availability of the application
+	f) validation of the security configuration and monitoring for safety and security of the systems
+	
+There are lot of dis-advantages with the in-house hosting
+1. cost of investment is very high
+2. it takes lot of time in setting up and hosting the application
+3. the maintenance cost involved in managing the infrastructure/hardware is very high
+4. the maintenance cost involved in procuring and managing the manpower resources in monitoring and managing the application is very high
+5. the cost involved procuring the software licensing in running the application is high
+
+advantage:-
+1. highly secured as the infrastructure/physical resources are within our premises
+2. more control in managing the devices/systems/hardwares/applications
+
+In In-house hosting solution is not feasible/non-profitable for small/moderate businesses in offering their services over the web/network/online
+For enterprise organizations it would be an ideal solution.
+	
+To overcome the above problems in in-house hosting the hosting providers are introduced.
+#2. Hosting Providers
+For hosting an application we need 3 things
+1. Infrastructure resources
+2. Software platform, packages and libraries
+3. Domain Name Service (DNS)
+	
+An Hosting provider provides infrastructure, software platform ,libraries and packages for hosting an software application which are called "hosting services"
+	
+To make the application accessible to world we need DomainName Resolution which is called as "DomainName Service"	
+	
+There are 2 types of people are there in the market
+1. DNS providers
+DNS providers only provide domain naming service, which means we can buy domain names and we can register them with the backend systems on where our applications are running.
+For eg.. godaddy.com only provides DNS Services
+	
+2. Hosting Providers
+An Hosting provider provides along with DNS Service the infrastructure and softwares required for hosting the application
+For eg..
+mochahost.com, bigrock.com, hostinger etc
+
+_____________________________________________________________________________________
+25-J
+
+What is hosting?
+hosting is the process of making the application live! or making it available to access by the people around the world
+
+There are several ways we can host an application.
+#1 In-house hosting
+#2 Hosting provider
+
+#2. Hosting provider
+The hosting providers offers 2 types of services
+1. hosting services = providing infrastructure, software platform, libraries & packages and few tools for hosting and managing the applications is called "hosting services"	
+2. dns service = providing domainname service and dns registry for resolving the domain name is called "dns service"
+Where as an DNS Service provider will not provide hosting services, he might only provide DNS Service.
+--------------------------------------------------------------------------------------------
+#Hosting provider
+The hosting provider will procure hardware, infrastructure and space at a large scale and deploy them to providing hosting services to the world
+The hosting provider takes care of the below things:
+1. procure hardware infrastructure at a large scale with high-end server grade machines
+2. acquire space for placing and setting up the infrastructure
+3. 24/7 power and backup
+4. leased internet lines with backup lines
+5. aircooled environments
+6. highspeed network devices, routers and firewalls
+7. procure software licenses required
+8. manpower
+	1. administration team for installing and configuring the machines/software packages
+	2. network administration team
+	3. support engineering team	
+9. domain naming services
+
+The hosting provider offers various different types of hosting services to the world
+1. static webhosting
+2. php webhosting
+3. java webhosting
+4. linux vps hosting
+5. java vps hosting
+6. windows vps hosting
+etc
+
+How does the hosting providers offers the above services for cheaper price?
+The hosting provider provides shared hosting services, rather than dedicated environments.
+_____________________________________________________________________________________
+28-J
+Hosting Providers
+Hosting Providers provides shared hosting solutions to the small/moderate business vendors. In addition to the infrastructure the provide end-to-end hosting solutions.
+1. platform software/application servers based on programming language
+	- java: tomcat server or other equivalents
+	- python: wsgi/asgi
+	- php: lamp
+	etc
+2. shared database services (major: mysql/postgres)	
+3. exchange servers (relay mail servers)
+4. website building tools (zoomla, wordpress)
+5. development tools
+		- source code repositories (svn, git, wincvs)
+		- project management tools (zoho, redmine)
+6. office management tools
+		- hrm (employee managment, leave management)
+7. domain hosting tools
+
+In addition to the above they provide control tools like
+1. cpanel
+2. WHM panel
+etc
+
+installation, configuration and upgradation of these platform, softwares are taken care by hosting provider.
+
+
+advantages:-
+	1. low investment cost in hosting an software application
+	2. low maintainance, since monitoring, upgradation, patching the infra/software are taken care by hosting provider
+	3. 24/7 technical support and customer service support will be provided
+	4. 99.9% uptime is guaranteed on all the services
+
+dis-advantages:-
+	1. The hosting providers provides limited infrastructure only, with fixed cpu/ram and storage solutions, which is not suitable for enterprise applications
+	2. The technology stack these providers offer are limited, so every application of any technology cannot be deployed or hosted on shared hosting provider
+	3. less secured, as the infra is shared across the customers
+	4. migrating from one vendor to another vendor is not possible or may have limited solutions/options
+	5. we need to signup upfront contract in using the hosting provider solutions which will bind us to hosting provider
+	6. no scaleup or scaleout options are available 
+
+From the above we can understand hosting provider solutions are not suitable for enterprise class solutions, we need alternate
+
+#3. Datacenter
+
+_____________________________________________________________________________________
+29-J
+Datacenter:
+Datacenter setup the multi-storage building in which they procure huge amount of infrastructure and hardware resources required for hosting the applications 
+
+advantages:-
+	1. The cost of investment needed for procuring the infrastructure and dedicated hardware required for running/hosting an enterprise business solutions are less when compared with in-house solution
+	2. The customers can procure a dedicated machines of required quantity quickly from a datacenter
+	3. The technical stack over which we want to host our applications are lies in the hands of the customer / business owner itself, since these are dedicated machines allotted to the business owner
+	4. 24x7 available of the infrastructure is taken care by the datacenter, so guaranteed availability of the business is an added advantage
+	5. disaster-recovery, fault tolerance and backup/recovery are taken care by the data center
+	6. highly secured
+	7. we can procure a cluster of computers on a private network for added security
+	8. based on-demand of the business we can procure more hardware/machines and scaleout the infrastructure in running the application
+	9. if the system requirements in running the application has increased, we can procure high-configuration machines by placing an scaleup request to the datacenter 
+	
+scale-out/scale-in = extending the cluster size or adding a computer to a group of machines is called scale-out. removing a machine from group of computers is called scale-in
+
+scaleup/scaledown = upgrading the physical configuration of a computer like increasing cpu, ram, storage etc is called scaleup and decreasing the machine capacity is called scaledown
+
+dis-advantages:-
+	1. upon procuring the hardware machines from the datacenter, since these machines doesnt have a platform software or pakcages or libraries installed, the business owner and a team of IT engineers has to setup, configure and bring the systems to the desired state to host the software applications, which might takes a couple weeks around 2-4 depends on the type of softwares we need to install. looks like the business owner invest or pay for nothing to be used out of the infrastructure he procured which is a considerable expenditure incurred
+	2. the datacenters usually has fixed shape of infrastructure. based on our application requirement we need to choose the closest possible hardware configuration machine, for which we might need to pay additional amount even though we dont utilize the hardware resources
+	3. There are fixed contractual agreements on the timelines in procuring the infrastructure from the datacenter, for eg.. an minimum of 6 months is required in taking the infra
+	4. For short-term usage the cost of infrastructure will be quite high. to get better pricing we need to signup long-term contractual agreements in using the infrastructure. ontop of it we need to pay upahead before the usage as per the contract
+	5. even though datacenters supports scaleout and scalein 
+		- it purely depends on availability and may have to be in waiting queue in procuring the additional infrastructure
+		- for a scaleup we need to get into an minimal term of contract in using those machines
+	6. along with the above scaleup/scaledown has their own challenges
+	
+Cloud Computing is about on-demand delivery of infrastructure/computing services to world
+
+_____________________________________________________________________________________
+30-J
+cloud computing
+on demand delivery of computing services to the world is called "cloud computing". As part of the cloud computing there are 3 types of services are provided.	
+1. IAAS = infrastructure as a service
+2. PAAS = platform as a service
+3. SAAS = software as a service
+
+
+#1. IAAS 
+IAAS stands for infrastructure as a a service. all the computing resources required for hosting/running an software application are provided as part of IAAS.	For eg..
+	1. compute instance (computer) (operating system platform)
+	2. network resources 
+		2.1 gateways
+		2.2 firewalls
+		2.3 subnets
+		2.4 private networks
+	3. ip adresses
+	4. storage (network storage, additional storage backup) 
+	5. load balancers
+	6. dns resgistries
+	7. dns services
+
+virtualization technology
+virtualization technology is used for creating multiple parallel isolated environments on a physical computer system
+
+If we look at the above IAAS is merely looks like an data center, but there are lot of benefits are there
+1. The shape of the machines that can choosen in procuring the infrastructure is flexible we can compose the configuration of the machine with which we want to procure the resources
+
+_____________________________________________________________________________________
+01-Ju
+
+Cloud computing 
+on-demand delivery of computing resources to the world is called "Cloud Computing". As part of the cloud computing there are 3 types of services are provided	
+1. IAAS
+2. PAAS
+3. SAAS
+
+#1. IAAS
+IAAS Stands for infrastructure as a service. The compute instance and network infrastructure required for hosting the applications are provided aspart of the IAAS.
+like 
+1. Compute instance
+2. Network infrastructure
+	- Routers
+	- Gatways
+	- vpn
+	- subnets
+	- virtual private networks
+	- firewalls
+3. load balancers
+4. dns registries
+5. dns service 
+6. ip address
+7. cloud storage
+etc
+
+The cloud providers uses virtualization technology in offering IAAS layer flexible to the world.
+Virtualization
+Virtualization is used for creating multiple parallel isolated environments on a physical computer system. The Virtualization technology works based on hypervisor.
+	
+There are 2 types of hypervisors are there
+1. software hypervisor = Hypervisor as a software is shipped by the vendors, that has to be installed on the host machine operating system, using which we create virtual machines to share the physical system resources of the machine.
+advantages:-
+	1.1 cost effective solution in creating multiple environments
+dis-advantages:-
+	1.1 throughput or the performance of the virtual machines are low
+	1.2 computing resources of the physical machine are wasted because of running host operating system
+	
+2. hardware hypervisor = The hypervisor is shipped directly as an hardware device which runs on the machine itself without the need of host operating system
+advantages:-
+	1. higher throughput
+	2. effective utilization of system resources of the host machine
+dis-advantages:
+	1. very costly
+	
+The cloud vendors/providers relies on virtualization technology in providing infrastructure to the world.
+advantages:-
+1. We can procure the computer instance of flexible shape in nature, based on the requirement in running the application, there is zero wastage cost in utilizing the machines as we dont need to signup for high shapes because of restrictions
+2. The cloud providers within couple of minutes will be able to provision the infrastructure and make the compute instances available almost instantly
+3. The cloud providers works based on pay-per usage model. 
+	based on the usage of cpu/ram and storage and network i/o the enduser has to pay the amount rather than how long the infrastructure has been kept 
+4. There are absolutely no long-terms contracts required in signing up for the infrastructure. instantly the compute instances are alloted and can be terminated or released immediately, there is no fixed period of usage restrictions are not there
+5. scale-out and scale-in of the infrastructure is done instantly, many of the cloud providers offers autoscaling configurations which means we can periodically configure the scale-out and scale-in intervals based on the usage.
+6. scale-up and scale-down is supported by the cloud provider
+7. periodical backup and restoration in the event of crash is handled by cloud.
+	
+The cloud providers takes care of managing the lifecycle of the compute resources 
+1. provisioning
+2. deprovisioning
+3. backup
+4. restore
+5. scale-out/scale-in
+6. scale-up/scale-down
+
+____________________________________________________________________________________	
+02-Ju
+Cloud computing
+on-demand delivery of computing resources to the external world is called "Cloud Computing". There are 3 different types of services offered by cloud providers
+#1. IAAS
+#2. PAAS
+#3. SAAS
+
+#1. IAAS = stands for infrastructure as a service, all the computing and infrastructure resources required for hosting and running an software application is provided as part of IAAS.
+The lifecycle activities like
+1. provisioning
+2. deprovisioning
+3. backup
+4. restore
+5. scale-out
+6. scale-in
+7. scale-up
+8. scale-down
+are taken care by cloud provider
+
+The advantages of cloud over data center or other hosting platforms
+1. flexibile shapes
+2. no up-front cost/contractual signups or agreement in leasing the infra/compute services
+3. pay per usage
+
+#2. PAAS
+PAAS stands for platform as a service. For our applications to execute or run on a machine we need the language software or application servers to be available. unless otherwise our applications will not run on the underlying machine.
+	
+The softwares that acts as a base/foundation on which the applications softwares run ontop of them are called "platform softwares" for eg..
+	1. all the language softwares
+		1.1 java sdk
+		1.2 python sdk
+		1.3 php sdk
+		etc
+	2. all the application servers or middlewares on which our applications work
+		1.1 tomcat/weblogic/websphere servers etc
+		1.2 wsgi/asgi servers
+		1.3 lamp / xamp server etc
+		
+	3. database servers like
+		3.1 mysql server
+		3.2 postgres sql server
+		3.3 oracle
+		etc
+unless these softwares are installed/configured on the compute instances, our applications cannot be deployed. 
+The business organization has to hire a team of system administrators, who takes care of procuring licencse, installing, configuring and managing these platform software
+
+weblogic server -> (cluster) 
+		
+____________________________________________________________________________________
+04-JU
+What is cloud computing, what is the purpose of cloud computing?
+on-demand delivery of computing resources to the world is called "cloud computing", a cloud computing vendor provides 3 types of services.
+1. IAAS
+2. PAAS
+3. SAAS
+
+#2. PAAS 
+PAAS stands for Platform as a Service. For running/deploying an software application on a computing machine along with operating system we need additional software libraries, packages or application server infrastructure.
+For eg..
+1. a java application = we need jdk software and application servers to be installed and configured like (tomcat, weblogic or websphere etc) on the machine
+2. a python application = we need python sdk along with aswi/wsgi servers to be installed
+etc
+
+similar for each application of a specific technology we need underlying software packages or libraries or servers to be installed and configured on which our applications works. these libraries/packages/servers on which our application works are called "platform software".
+	
+The platform software required for running an application will be different from applicationt to application, the architect/developer of the application needs to determine what platform software is required for running an application
+
+The devops engineer or relevant platform software expert/administrator has to takecare of installing and configuring it, so that we can run our application.
+	
+There are lot of problems in manually installing, configuring and managing the platform software.
+	1. upon procuring/provisioning an cloud compute machine from a cloud provider, to run the software application on the infrastructure, the devops engineer or platform administrator has to manually install and configure the platform software on that machine.
+	The time required for installing/configuring the platform software is more that delays the delivery of the application and accumulates to the cost of delivery of the application
+	
+	2. if the platform software has to be configured/installed on a cluster of machines, it would be highly complex and requires lot of expertize in installing and configuring the relevant platform software and many of the times landup in in-appropriate configurations which leads to issues
+	
+	3. manually managing the platform software installations and configurations is going to be time consuming process when we are rolling on to a large group of applications on a wider scope of machines, so the business owner has to hire a devops automation engineers, will work on writing the programs/scripts for automating the process of installing and configuring these software using tools like
+	- shellscript
+	- ansible
+	- puppet
+	- chef
+	etc
+	the cost incurred in automating the platform software setup is going to be very high
+	
+	4. periodical backup and restoring the platform software has to be taken by the devops/platform administrator team manually which is an tedious job
+	
+	5. upgradation of the platform software to a newer version has to be taken care by the devops / platfrom administration team. an excessive care and proper strategy has to be choosen for software upgradation. an sandbox environment has to be setup in testing the existing application and identifying the fine tune configurations required in running the application on new versions of the platform
+	it is quite risky and time consuming job in upgrading the underlying platform software and inccurs huge amount of cost in upgrading the platform.
+	and eventually may require some sort of automation to be inplace in upgrading the platform software to expedite the process.
+		
+	6. uptaking the patches and monitoring the systems to ensure their stability is a tough job
+	
+	7. procuring the necessary software licenses and ensuring there are properly used need to be taken care
+	
+	8. The scale-out and scale-in of the underlying machines will be taken care by the cloud provider, but scaling-out and scale-in of the platform software has to be manually managed by the devops/platform administrator which is a tough job
+	
+	9. the scale-up and scale-down lifecycle activities on the platform software has to be taken care by the devops/platform administrator
+	
+Even though the cloud providers are providing the IAAS services (infrastructure/computing resources) to the users, managing the platform softwares and ensure to work on lifecycle activities are quite difficult.
+		
+To overcome the above challenges, the cloud providers supports PAAS.  
+
+provision: a computer 4gb ram, 2 core cpu, 500 gb hdd
+
+provision: a weblogic server computer, 8gb ram, 4 core cpu, 1 tb hdd (not compatible)
+					-> 2 node cluster instance for HA
+					-> Loadbalancer 
+					-> Backup policy and restoration
+					-> upgradation/patches (schedule upgrades/autoupgrades)
+					-> create
+10/20 minutes -> 
+						
+#1 scale-out - 2 more instances of weblogic server 						
+					
+____________________________________________________________________________________
+05-JU
+PAAS stands for platform as a service. all the required software packages, libraries and application server infrastructure which acts as a platform in running the enduser applications are managed by the cloud provider itself.
+	
+There are lot of advantages of using PAAS from a cloud provider
+1. The provisioning of the infrastructure along with PAAS layer ontop of it will be taken care by the cloud provider, so that we can get the machines with PAAS installed and pre-configured and ready for deploying our applications
+2. Upgrading and patching the PAAS layer is taken care by the cloud provider, so that we dont need apply or upgrade the PAAS infrastructure
+3. periodical backup and restoration (incase of crash) of PAAS software along with infra is taken care by the cloud provider
+4. The lifecycle operations like scale-out/scale-in , scaleup and scale-down are taken care by the cloud provider in managing the PAAS software
+
+#3. SAAS
+SAAS stands for Software as a Service.
+_____________________________________________________________________________________
+06-JU
+How does the business organizations has to use these Enterprise Software Applications that are pre-built and are ready for usage?
+For eg..
+	1. SAP
+	2. Oracle EBusiness Suite
+	3. JDEdwards
+	4. Peoplesoft
+	5. Salesforce
+	6. Sibel CRM
+	7. Microsoft Dynamics
+	8. Taleo
+	9. Oracle Apps
+	
+#1. The business organization has to procure the license for the Enterprise Software System and respective module licenses based on their usage
+- The cost of procuring the lincense in using these Software products are pretty much high
+
+#2. These systems requires huge computing capacity and storage in running on the machines. So the business organization has to procure groups of server grade computers for installing and running these software products
+- The cost of infrastructure in running these software products are quite high
+
+#3. Installing and configuring these enterprise software systems are quite complex, and requires special engineers who are called administrators of the software product to be hired for installing/configuring the product
+
+#4. we need experts of the product, takes care of customizing and adopting the product for our business organization and the processes
+
+#5. We need a support team or an administration team who will monitor continously and perform regular maintainance activities required for ensuring the smooth running of the software system like
+	- backup
+	- restore
+	- cleanup activities etc
+
+From the above we can understand adopting and using these enterprise software products is a quite tedious job and required huge investment/maintainance cost incurred in running these systems.
+A moderate business organizations cannot afford in using these enterprise software products
+
+To overcome all the above dis-advantages in using a software product by the endusers the SAAS has been introduced by the cloud providers
+
+There are lot of popular enterprise software products popularly used by many of the organizations in the world, so such software products are identified by the cloud provider and provisioned and provided them to the organizations
+
+
+SAAS
+Software as a Service, where the cloud provider provides the Enterprise Software products to the world in a multi-tenant model.
+	
+1. The cloud provider takes care of provisioning, installations and configuration of the enterprise software product
+2. since it is an multi-tenant installation, the cost of infrastructure and licenses of the software is distribtued/shared to multiple customers/endusers
+3. monitoring and maintainance activities like backup/restore are taken care by the cloud provider
+4. all the lifecycle activities like
+	- scaleup/scaledown
+	- scale-out/scale-in 
+are handled by the cloud provider
+
+There are lot of cloud providers are there in the market
+1. Amazon Web Services cloud (AWS)
+	# IAAS
+	# PAAS and SAAS support 
+	
+2. Google Cloud Provider (GCP)
+	#technology innovation 
+	#IAAS 
+	
+3. Microsoft Azure	
+4. Oracle Cloud Infrastructure (OCI) #strong
+#technology companies
+	- Platform Software products
+	- Enterprise Software products	
+etc
+
+
+_____________________________________________________________________________________
+07-JUL
+The cloud providers offer 3 types of services
+1. IAAS
+2. PAAS
+3. SAAS
+
+every cloud vendor/provider doesnt provide all the 3 services, depends on the cloud provider and their footprint in those areas they provide different types of services.
+	
+different cloud providers provides different array of services, we need to choose the cloud provider carefully based on the product requirements we wanted to host on the cloud platform
+--------------------------------------------------------------------------------------------
+AWS Cloud
+AWS Cloud stands for amazon webservices cloud provider offers the 3 types of cloud services to the world
+1. IAAS
+2. PAAS
+3. SAAS
+
+AWS Cloud provider offers free-tier account for 1 year. dont go by the world free-trail means everything is free.
+There are few services categorized to free-tier and have their usage limits as well.
+For eg.. 
+an AWS Compute instance is free for 720 hours only (per month) - 1 year
+similarly for all the types of services there is a usage limit we should read the billing and pricing details before using the aws services.
+	
+To start with aws cloud we need to create an aws free-tier account. while creating an aws free-tier account you need a debit/credit card handy, so that aws authenticates your card but deducting $1 or 2 INR to open your account.
+	
+There are 2 types of accounts are there in aws cloud
+1. AWS ROOT account
+ROOT Account is the owner of the aws account who has complete/un-restricted access to all the services of the aws account. 
+	
+note:- make sure you keep the account credentials highly secured and dont disclose to anyone, giving the credentails of your aws account to other users is equal to providing access to your bank account directly
+
+AWS Root account is the user who can keep track of all the services/resources that are created under the aws account. he can control or grant access to the aws account by creating additional users called IAM Users
+
+
+
+2. IAM User account
+_____________________________________________________________________________________
+08-JUL
+To use the services of the aws cloud platform, we need to create an aws account. An aws account is the one through which aws keep tracks of the services and resources being created by an user within the aws cloud infrastructure.
+Which resources are created or entitled for which account and who can access, administor and manage the resources are driven through aws cloud account.
+There are 2 types of users are there in aws cloud
+#1. Root account user
+#2. IAM user
+
+#1. Root account user
+The Root account user will be created aspart of the aws cloud account creation/sigup/registration process itself. The root account user has unrestricted access to all the services of the aws cloud platform. 
+The root user can delegate access to the aws services/resource of his account and grant permissions to the resources to other users of his account.
+	
+#2. IAM user
+An aws root user can delegate access to the services/resources by creating additional users in his account who are called "IAM user"
+	
+The aws offers free-tier account upon signup for an aws account. but not all the services are free and there is an usage limit on each service.
+--------------------------------------------------------------------------------------------
+AWS domains
+-------------
+There are lot of cloud services offered by the aws cloud platform, identifying the services and using them becomes messy or difficult. To easily help us in locating, navigating and identifying the AWS Cloud services, aws has grouped the services into domains.
+	
+A domain is nothing but group of related services of similar nature so that users can quickly browse them at one place
+The AWS has categorized its services into 7 domains
+1. Compute
+2. Network
+3. Storage
+4. Database
+5. Security
+6. Management Tools
+7. Messaging
+--------------------------------------------------------------------------------------------
+How can we access and use the services/resources offered by the aws cloud platform?
+To access the aws cloud platform services we need aws cloud account and we need users of the account to access the services.
+The aws allow us to use the cloud services in 3 ways.
+#1. aws cloud management console
+aws cloud management console is an web application exposed/provided by the aws cloud platform through which we can browse the service offerings of the aws cloud platform. we can perform all the lifecycle operations on the cloud services through aws cloud console application.
+	
+The Cloud developers, administrators or cloud engineers uses the aws cloud console to easily navigate and use the services of the aws cloud account.
+	
+#2. programmatic access 
+The aws cloud platform has provided cloud sdk/api (support different languages), so that the developers can use these apis in using, managing and administering the cloud resources of the aws
+
+#3. REST api access
+The aws cloud platform has exposed REST Endpoints through which we can browse, administer and manage the cloud services
+
+#2, #3 are for programmers not for cloud engineers.
+
+AWS has provided an tool called AWS CLI (Command-Line interface)
+AWS Cloud Shell -> aws cli commands
+_____________________________________________________________________________________
+
+11-JUL
+How does aws cloud allows us to access the cloud platform services?
+There are 3 ways aws allows us to access the cloud services
+#1. aws cloud console
+#2. programmatic access using aws cloud sdk
+#3. REST Endpoint / HTTP API Access
+
+#2 programmatic cloud sdk, #3 REST Endpoint access will be used by the cloud developers and tool provider, using which they automate the process of cloud services/resources.
+For eg.. there are IAAC tools like terraform, cloud formation uses the API access in automating the process of lifecycle management on the cloud resources.
+		
+On top of the above the aws has provided a quick and handy tool/utility called AWS CLI, it is an command-line interface which can be installed and configured to our aws account. Using the AWS CLI a cloud engineer/administrator can quickly manage the cloud resources of his account instead of logging in through cloud console
+--------------------------------------------------------------------------------------------
+AWS Architecture
+The AWS Architecture refers to how does the aws cloud platform has been organized and designed to spread/provide cloud services to the world
+
+#1. AWS Regions
+----------------
+AWS Region is nothing but a geographical location where it offered the cloud platform services from a specific location. A Region is not an country rather they can be multiple regions within a country from where AWS cloud offers the services.
+	
+For eg.. 
+United States, AWS has 4 regions
+US-EAST-1
+US-EAST-2
+US-WEST-1
+US-WEST-2
+	
+AWS has spread across 22 regions around the world from where there are operating from. upon logging into the cloud console, on top right corner we need to choose the region from where we wanted to manage or use the cloud resources/services from.
+	
+How do we choose a region to utilize the cloud resources/services of the aws cloud platform?
+There are 2 factors based on which we should choose the region
+1. network latency
+Based on the targeted audience/customers of our business we should choose a aws region closest to them. if we choose a region far away from the location from where you are offering business services, then the customer would find delay in accessing your application due to latency in transferring the request from customer location to the region where our application is hosted
+For eg.. if our targeted audience are from India, and if we host our application in us-east-2 (ohio), then it takes lot of time for sending the request all the way down to the united states and getting a response, where enduser see a delay in loading the web pages/accessing the application which would spoil the end-user experience
+2. pricing 
+different aws cloud regions offers different pricing for the cloud resources, these pricing is varied depends on local government policies and demand of services at that location.
+The aws might offer services with different price across different regions to evenly distributed the people across the regions of a location
+
+#2. Availability Zones (AZ)
+----------------------------
+Within a AWS Region, AWS has setup multiple Availability zones. An Avaiablablity Zone is nothing but a group of datacenters within a location from where AWS is offering cloud platform services from that location.
+	
+Within a AWS Region, there can be multiple Availability zones, and AWS ensure/promises to have atleast 2 Availablity Zones within an AWS Region.
+	
+AP-SOUTH-1 (Mumbai)
+	-> AZ-1 = loss/poweroutage within state (standstill)
+	-> AZ-2
+_____________________________________________________________________________________
+
+12-JUL
+AWS Architecture
+
+AWS Architecture refers to how does aws cloud platform has spread across and provides the cloud services to the world.
+	
+#1. AWS Region
+AWS Region is a geographical location from where AWS cloud platform is providing its services across. There are total 22 regions over which AWS Cloud platform has spread across. AWS Region is not an country rather a place where it is located within the a country from where it is operating in providing the services. A country can have more than one regions as well.
+	
+There are 2 factors based on which we should choose a region in using the cloud services.
+	1. network latency
+	2. pricing
+	
+#2. Availability zone
+Availability zone is a group of datacenters within a region from where aws cloud platform is offering the cloud services. In each AWS Region atleast 2 availability zones are setup by the AWS Cloud platform for ensuring High Availablity 
+
+The availability zones are meant for high availability of the services/resources within a region. The AWS recommends us to host our applications across he AZ of the region, so that if one Availablity Zone fails/crashes there is guarantee that your application still exists and can serve the customer from the other AZ of the region.	
+The purpose of AZ is for achieving the High Availablity
+
+AWS Cloud platform chooses the availability zones within a region, by carefullying evaluating various different parameters like
+1. Climatic conditions
+2. Power availablity
+3. Cyclone conditions
+4. Tornados etc
+
+So that the likeliness of all the availablity zones within a region going down is very less.
+These Availablity zones are inter-connected with dedicated high-speed internet lines to ensure there is zero no network latency across the AZ within the region.
+
+#3. Edge Locations
+Edge locations are the mini datacenters co-located across the regions of a aws cloud platform. There are few shared/global services are there within AWS Cloud platform like
+1. Cloud Front
+2. Route53
+etc
+to reduce the network latency in distributing these services to the customers, aws has setup mini datacenters from where they operate these shared/global services
+
+These edge locations are replicated centers across the regions in offering the global services with low latency.
+_____________________________________________________________________________________
+
+13-JUL
+Edge locations
+edge locations are the co-located locations within an aws region, which are a kind of mini/small datacenters. In these edge locations amazon hosts global/shared services to reduce latency in offerring them
+
+1. cloud front
+2. route53
+--------------------------------------------------------------------------------------------
+Scope of AWS Services
+There are various different cloud services offered by the aws cloud platform, these services can be categorized into 3 different scopes based on their availablity/accessibility
+The scope of services means, those are created and bounded to which scope within the cloud platform so that cloud engineers can access and manage these resources/services created.
+	
+1. Global
+2. Regional
+3. Availability Zone
+
+#1. Global scope
+The services categorized to the global scope are accessible and available across all the regions of the aws cloud platform. A change in these services will effect all the regions of the aws account.
+For eg.. let us explore few global services to understand
+1.1 Amazon Route53 
+If we publish an dns entry into Route53 service, the change would be applied and propagated across all the regions of the aws infrastructure for that account
+1.2 IAM registry
+The AWS accounts are created and changes applied to the aws account users are propagated and applied globally at the account level
+1.3 AWS Cloud Front 
+AWS Cloud Front is an cdn (content delivery network) server, into which we can propagate an static content like js, css, images etc and these resources would be propagated across all the regions of the aws infrastructure automatically
+
+#2. Regional scope
+These services are created within a region and are accessible/visible within the region only
+2.1 DynamoDB
+it is an nosql database which is an region based service, upon creating the aws cloud platform partitions the dynamodb table and replicates across the availability zones of the region for HA
+2.2 S3 bucket
+The objects stored within an S3 bucket are scoped to the region level
+2.3 Elastic Load Balancer
+2.4 Virtual Private Cloud Network
+
+#3. Availability Zone scope
+These services are scoped to the Availability zone in which those are created and can be visible and managed only within the zone 
+3.1 Amazon Elastic Block Storage
+EBS volume is an harddisk drive for an ec2 instance and is scoped to the ZA location only, we can attach an EBS volume to the ec2 instances of the same AZ only
+3.2 Amazon EC2
+3.3 Subnet
+--------------------------------------------------------------------------------------------
+#Architecture of AWS
+1. AWS Region
+2. Availability Zone
+3. Edge Locations
+4. Scope of Services
+
+The AWS Cloud services can be categories into 8 core domains
+1. Compute domain
+2. Network domain
+3. Storage domain
+4. Database domain
+5. Security domain
+6. Management Tools
+7. Messaging
+8. Developer Tools
+_____________________________________________________________________________________
+
+14-JUL
+AWS Service scope
+AWS Service scopes refers to the a resource or service of a AWS is entitled for which level and the manageability aspect of the service. There are 3 scopes are there in aws cloud platform.
+1. global
+2. regional
+3. availability zone
+
+1. global scope
+the service is created and accessible across all the regions of the cloud infrastructure platform.
+- Route53
+- AWS Cloud Front
+- IAM registry
+
+2. Regional scope
+The service is created to the region level and is accesible and manageable within the region.
+- DynamoDB
+- Elastic LoadBalancer
+- S3 Bucket
+- Virtual Private Cloud Network
+
+3. Availabiblity Zone
+These services are created per AZ 
+- Elastic Block Storage 
+- EC2 instance
+- Subnet
+--------------------------------------------------------------------------------------------
+#network domain
+
+#compute domain
+ec2 instance
+ec2 stands for elastic cloud compute, which is nothing but an machine/computer created on the aws cloud platform 
+
+#provisoning = The process of creating an resource on a cloud platform is called provisioning.
+	
+How to launch an ec2 instance on aws cloud platform?
+#1. goto services choose compute and navigate into ec2
+#2. click on launch instance
+#3. we need to provide the details in creating the ec2 instance
+	3.1 provide name for the instance (for eg.. javainstance)
+	3.2 choose the AMI (amazon machine image) (operating system)
+		- ubuntu family
+		- 22.04 LTS (free tier)
+	3.3 choose the shape of the instance (t2.micro only)	
+	3.4 click on create keypair
+		This generates an ssh keypair in accessing the ec2 instance
+		3.4.1 enter the keypair name 
+		3.4.2 choose the algorithm (default: RSA)
+		3.4.3 choose type of keypair (default: pem)
+		The pem file will be downloaded upon clicking on finish, place the ".pem" into $USER_HOME/.ssh directory
+		
+		upon creating the keypair choose the keypair name from the drop down which which we want to create the instance
+	3.5 choose the default vpc, subnet and enable public ip address (everything is auto-selected, just cross-check and leave it to the default)
+	3.6 scroll-down and click on launch
+	
+goto ec2->instances page and identify the instance we provisioned and copy the public ip address of the instance and use it for ssh into the computer	
+
+How to connect to ec2 instance?
+1. install gitbash on your machine
+2. open gitbash
+3. enter ssh command for connecting to the ec2 instance using public_ip and pem file as below.
+	ssh -i ~/.ssh/javainstancekp.pem ubuntu@publicip
+_____________________________________________________________________________________
+
+15-JUL
+What is SSH, why do we use it?
+SSH stands for Secure Shell protocol. SSH is used for accessing the remote linux computers over the network securely.
+	
+How to connect to the remote linux machine over ssh?
+1. we need to install gitbash tool on our machine
+2. run ssh command for connecting to the remote computer
+
+ssh -i pathKeyFile username@publicip
+--------------------------------------------------------------------------------------------
+#Network domain
+The network domain provides various types of network resources like routers, firewalls and gateways etc that are required for hosting, interconnecting and enforce security or traffic restrictions on the resources with aws infrastructure
+
+#1. Virtual Private Cloud (vpc) Network
+vpc network stands for virtual private cloud network, it is an isolated network of resources of an aws account user.
+An aws account user can create an vpc network, he can provision resources within the network keeping them isolated from other resources of the aws cloud platform. The resources of one vpc are completely isolated from the resources of another vpc
+
+1. vpc are created at the user account level per region of the user
+_____________________________________________________________________________________
+
+16-JUL
+#1. Virtual Private Cloud Network (VPC Network)
+VPC is an isolated network of resources of an aws account user, all the resources within an vpc are isolated from other resources of another vpc by default.
+	
+1. A vpc is created per user account, per region, where all the availability zones of the region are part of the vpc
+2. by default all the resources within the vpc can communicate with each other
+3. per aws user account, per region we can create at max 5 vpcs only (soft limit)
+4. by default a resource in one vpc cannot communicate with another resource of other vpc, even though both vpcs belongs to same aws useraccount of same region, if we want resources across the vpcs to communicate with each other we need to enable vpc peering
+5. by default per each user account, across all the regions aws will configure one default vpc
+
+
+In aws cloud platform there are 2 types of limits are there
+1. softlimit = something by default enforced by the aws cloud platform for each type of service (if required) and can be extended upon request
+2. hardlimit = the hardlimits cannot be extended or modified.
+	
+What is the purpose of a vpc?
+There are many ways vpc is used for organizing and managing the resources of an organization
+
+#1. business unit/department
+In an organization there can be multiple business units or departments, across the business units or departments we want to deploy and host the applications specific to the department. How to ensure the applications of various different departments are deployed and kept isolated from one another. How to enforce a different security restrictions on different resources of various different departments.
+That is where we can keep them separately as part of 2 different vpcs
+
+#2. across the projects
+we can create separate vpcs per each project and can isolate the resources of one project from another one using vpcs
+
+#3. per environment
+we can create different vpcs each per environment like
+devvpc
+testvpc
+prodvpc
+etc
+
+How to create an vpc?
+_____________________________________________________________________________________
+
+18-JUL
+#1. virtual private cloud (vpc) network
+vpc is an isolated network of resources of an aws account user within the region.
+
+1. an aws account user can create at max 5 vpc per region within his account (softlimit)
+2. the resources within a vpc by default can talk to only the other resources within the same vpc
+3. an vpc spans/spreads across all the availability zones of a region
+4. by default the resources can talk to only the other resources of the same vpc,if we wanted the resources to talk to other resources of an different vpc of the aws account users then we need to enable vpc peering
+5. per each region of an aws account an default vpc is created by the aws.
+	
+purpose of vpc:
+vpc is being used in many ways for organizing and controlling the access to the resources at various different purposes
+1. across the business units/departments of an organization to isolate the resources of them we can create separate vpcs
+2. across the different projects
+3. for different environments like dev, test, prod etc
+
+How to create an vpc?
+To create a virtual private network to isolate the resources from the others we have provide the CIDR range along with name of the vpc.
+CIDR stands for class-less inter-domain routing, used for specifying the network and host address range in creating ip address for the resources.
+	
+#2. subnet
+vpc is an isolated big network which spans across all the availability zones of a region in which it has created. by default all the resources created within the vpc are accessible to each other and the same traffic restrictions are applied to all the resources.
+But for different group of resources we wanted to apply different security restrictions and accessibility, for eg.. we wanted the rds (database) instance to be private and accessible to the resources within the vpc, but we wanted the ec2 instance to be accessible publicly by anyone, this can be dont be separating and them into 2 subnet works of an vpc
+
+a vpc can be further broken down into smaller networks where we can create resources within the subnet of a vpc based on the restrictions we wanted to enforce.
+
+1. A subnet is created within the availability zone of a vpc
+2. per vpc we can create at max 200 subnet
+3. it is recommended to create minimum 2 subnets across the availability zone of an vpc.
+	
+What is the purpose of a subnet?
+There are 2 reaons why we use subnet
+1. to enforce different security/traffic restrictions to various different group of resources within a vpc we can distribute them into separate subnets
+2. to distribute the resources across the availability zones of a region
+
+How to create a subnet?
+while creating a subnet we need to specify 
+1. the vpc in which we wanted the subnet to be created
+2. availability zone in which want to create
+3. subnet name
+4. cidr notation within the vpc range
+
+There are 3 types of subnets are there
+1. private subnet
+2. public subnet
+3. hybrid subnet
+
+#1. private subnet
+by default when we create a subnet within the availability zone of a vpc it acts as an private subnet only, which means all the resources within the subnet can talk to any other resources across all the subnets of the same vpc. These resources are not acessibile publicly to the outside world
+_____________________________________________________________________________________
+
+20-JUL
+vpc network
+vpc network is an isolated network of resources of an aws user account within a region
+
+subnet
+vpc is a very big network that scopes to the region level, there are various resources we wanted to create for an application, the access registrictions and security rules we want to apply for these resources are different from one to the another, if we place all of these resources under onesingle network, then we cannot control/restrict the resources differently
+The subnet is nothing but a smaller network within the vpc in which we can create resources and manage the security restrictions on them
+
+1. per vpc it is allowed to create at max 200 subnets
+2. subnet is scoped to the availability zone level
+3. it is recommended to create atleast 2 subnets across the availability zones within a vpc for high availability, so that we can distribute the resources across the AZ
+
+There are 2 reasons for creating a subnet
+1. to apply different traffic restrictions to the group of resources within the subnet
+2. the way we can bind resources to a specific availability zone of a region within the vpc is through subnet
+
+within the region max #200 subnets are allowed, we can create any number of subnets within an AZ, based on group of resources and restrictions we want to apply. but cummulative no of subnets should not exceed #200 within that vpc
+
+
+There are 3 types of subnets are there in aws cloud platform
+1. private subnet
+2. public subnet
+3. hybrid subnet
+
+#1. private subnet
+_____________________________________________________________________________________
+
+21-JUL
+
+subnet
+subnet is a sub-network out of an vpc network to enforce traffic/security restrictions on a group of resources
+
+1. subnets are scoped to the availability zone
+2. at max we can create 200 subnets within an vpc
+3. it is recommended to create atleast 2 subnets across the availability zones of an vpc to distribute the resources
+
+There are 2 main reasons for using an subnet
+1. to distribute resources across the availability zones of an vpc in an region
+2. to enforce traffic restrictions/security on different groups of resources
+
+we might need to create multiple subnets within the availability zone for enforcing different security restrictions on different group of resources
+
+There are 3 types of subnets are there
+1. private subnet
+2. public subnet
+3. hybrid subnet
+
+#1. private subnet
+by default when we create a subnet within the availability zone of a vpc within a region, the subnet becomes private subnet only, which means the resources within the private subnet cannot be accessible from external network.
+only the resources within the vpc across the subnets can communicate with each other
+_____________________________________________________________________________________
+
+22-JUL
+How many types of subnets are there?
+There are 3 types of subnets are there
+1. private subnet
+2. public subnet
+3. hybrid subnet
+
+#1. private subnet
+by default when we create a subnet within the vpc it becomes private subnet, all the resources within the private subnet cannot be accessed from the external world or the resources within the private subnet cannot access the traffic on the external world
+inbound/outbound external network is not available
+all the resources across the subnets of the vpc can communicate with each other
+
+#2. public subnet
+The resources within the public subnet will have both inbound/outbound to the external network.
+To make an subnet as an public subnet we need to attach an internet gateway
+
+#3. Internet Gateway
+Internet Gateway is a aws network device which is attached to public internet. To make an subnet as a public subnet, we need to create an internet gateway (IG) and attach to the vpc of our network
+
+we can use the internet gateway to route the traffic from the subnets of our vpc to the external network, by attaching the IG to the VPC.	
+Note: when we attach an IG to the vpc, the subnets of our vpc will not become public subnets, to make a subnet public subnet we need to configure routing rule
+
+#4. RouteTable (RT)
+By default when we create an vpc, a default route table will be created by the aws.
+
+_____________________________________________________________________________________
+
+23-JUL
+There are 3 types of subnets are there
+1. private subnet
+2. public subnet
+3. hybrid subnet
+
+#2. public subnet
+1.
+crazyeatsvpc [172.1.0.0/16] [ap-south-1]
+|-crazyeatspublicsubnet1 [172.1.1.0/24] [az-1]
+|-crazyeatsprivatesubnet2 [172.1.2.0/24] [az-2]
+
+2. internet gateway -> attach to crazyeatsvpc
+		|-crazyeatsig
+		
+3. route table [crazyeatspublicroutetable]
+		|-add subnet associate [crazyeatspublicsubnet1]
+		|-add routetable [0.0.0.0/0 -> IG]
+
+_____________________________________________________________________________________
+
+25-JUL
+#3. Hybrid Subnet
+_____________________________________________________________________________________
+
+26-JUL
+What is Hybrid subnet?
+Hybrid subnet is partially open to the public network. all the outbound/outgoing traffic from the resources of the subnet are allowed and all the public network traffic towards the resources within the subnet are blocked/not accessible.
+	
+When do we use it?	
+when we are hosting the applications behind the loadbalancer, we dont want public network resources to access our subnet resources or application directly, but the resources/application that is running within the subnet should be allowed to access the public network. because all the traffic to our application running within the subnet is routed throught the loadbalancer, so there is no need of our application to be directly exposed to the public. To handle this requirement we need to host our application on hybrid subnet.
+	
+How to create a subnet as Hybrid subnet?
+To create a subnet as Hybrid subnet, the aws cloud platform has provided NAT Gateway through which the traffic from the subnet resources to the external network should be routed through.
+The NAT Gateway is a network router that works based on Network address translation mechanism, which means 
+	1. all the external network traffic towards the subnet resources are not supported, because our subnet is technically a private subnet. So inbound traffic is not possible since the resources of our subnet are not exposed.
+	2. all the outbound/outgoing network traffic from the subnet resources are routed through NAT Gateway. The NAT Gateway upon receiving the request, it would replay the request to the public network resources as if the request is being originated from NAT Gateway itself (thus hiding the subnet resources from the external network). upon receiving the response the NAT Gateway will route the response back to the original sender of our subnet resource.
+		
+For NAT Gateway to route the request to the public network resources it should be created on a public network only.
+		
+2. we need to create an route table within the vpc by associating the subnet and add an routing rule to route the public network traffic through the NAT Gateway.
+
+Bastion host or jumpbox:
+How to ssh or connect the private subnet or hybrid subnet resources from the public network to carry installations, configurations and maintainance activities?
+To connect to the resources of a private or hybrid subnet we need to use bastion host or jumpbox. A bastion host or a jumpbox is nothing but an ec2 instance provisioned temporarily on a public subnet of the same vpc through which we can access any of the resources across the subnets of the vpc.
+upon completing the maintainance activity we generally de-provision the bastion host
+_____________________________________________________________________________________
+
+27-JUL
+Hybrid Subnet
+1. ap-south-1 (region)
+2. toylandvpc [172.16.0.0/16]
+3. subnets:
+		- toylandpubsn1 [172.16.1.0/24]
+		- toylandhybridsn2 [172.16.2.0/24]
+		- toylandprivatesn3 [172.16.3.0/24]
+4. toylandig 
+		- attach to toylandvpc
+		- toylandigrt 
+			- associate: toylandpubsn1
+			- route: 0.0.0.0/0 -> toylandig
+5. toylandng
+		- attach to the toylandvpc
+		- choose toylandpubsn1
+		- allocate elastic ipaddress
+		- toylandngrt
+			-> associate: toylandhybridsn2 
+			- route: 0.0.0.0/0 -> toylandng
+			
+ec2 instance - public subnet = external  network we can SSH
+ec2 instance - hybrid subnet or private subnet = external network we cannot SSH
+               only way is through bastion host/jumpbox from public subnet
+_____________________________________________________________________________________
+
+28-JUL
+What are NACL rules, what is the purpose of them?
+NACL stands for Network Access Control List is an firewall setup at the subnet level.
+	
+_____________________________________________________________________________________
+
+30-JUL
+security groups
+security groups are used for enforcing traffic restriction on an individual resource unlike the NACL used for enforcing traffic restrictions on the group of resources on a subnet level
+1. security groups are created at the vpc level, so that those can be reused by attaching to the individual resources of the vpc/subnet
+2. security groups are stateful which means it can keep track of a request/response 
+	We can configure Ingress and Egress rules in allowing inbound/outbound network traffic from the resource of the vpc/subnet.
+	Statefull means:-
+		- If we configure an ingress rule we dont need to configure an egress rule to allow the response for the request from the source of the vpc/subnet
+		- Similar to the above, if we configure an egress rule we dont need to configure ingress rule to receive response from the external network for the request our resource has sent from the vpc/subnet
+3. Security Groups can be applied only for few types of resources only
+	1. ec2 instance
+	2. elastic beanstalk
+	3. load balancer
+	4. rds instance
+	5. autoscaling group
+
+while creating an resource within an vpc of a subnet, aws cloud platform enforces us to create/select an security group if applicable for that resource.
+based on the type of the resource, aws configures the default ingress/egress rules in a security group
+for ec2 instances the default security group configuration shown up
+	ingress:
+		ssh  0.0.0.0/0  22  allow
+	egress:
+		*    0.0.0.0/0   *  allow
+-----------------------------------------------------------------------------------------------------------------------
+
+_____________________________________________________________________________________
